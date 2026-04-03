@@ -2,7 +2,7 @@
   "name": "就是記帳",
   "short_name": "就是記帳",
   "description": "最簡單的懶人記帳App",
-  "start_url": "./moneybook.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#FFF5F8",
   "theme_color": "#FF6B9D",
