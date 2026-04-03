@@ -1,0 +1,22 @@
+{
+  "name": "就是記帳",
+  "short_name": "就是記帳",
+  "description": "最簡單的懶人記帳App",
+  "start_url": "./moneybook.html",
+  "display": "standalone",
+  "background_color": "#FFF5F8",
+  "theme_color": "#FF6B9D",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
