@@ -144,149 +144,213 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
 .detail-value{font-size:14px;color:var(--text);font-weight:bold;flex:1}
 .time-input{background:var(--bg);border:2px solid var(--border);border-radius:12px;padding:8px 14px;font-size:16px;color:var(--text);outline:none;font-family:inherit;transition:border-color 0.2s}
 .time-input:focus{border-color:var(--primary)}
+/* 登入/註冊 */
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:var(--bg)}
+.auth-box{background:var(--card);border-radius:28px;padding:28px 20px;width:100%;max-width:380px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.auth-logo{text-align:center;font-size:50px;margin-bottom:8px}
+.auth-title{text-align:center;font-size:22px;font-weight:bold;color:var(--text);margin-bottom:4px}
+.auth-sub{text-align:center;font-size:13px;color:var(--text-sub);margin-bottom:24px}
+.auth-input{width:100%;border:2px solid var(--border);border-radius:14px;padding:14px;font-size:15px;color:var(--text);outline:none;background:var(--bg);font-family:inherit;margin-bottom:12px;transition:border-color 0.2s}
+.auth-input:focus{border-color:var(--primary)}
+.auth-switch{text-align:center;font-size:13px;color:var(--text-sub);margin-top:16px}
+.auth-switch span{color:var(--primary);cursor:pointer;font-weight:bold}
+/* 匯率 */
+.rate-bar{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:10px 14px;margin:8px 16px;display:flex;align-items:center;gap:8px;font-size:12px}
+.rate-val{font-weight:bold;color:var(--primary)}
+.rate-time{color:var(--text-sub);font-size:10px;margin-left:auto}
+/* 折線圖 */
+.line-chart-wrap{overflow-x:auto;padding-bottom:4px}
 .empty-state{text-align:center;padding:40px 20px;color:var(--text-sub)}
 .empty-icon{font-size:60px;margin-bottom:12px}
 .empty-text{font-size:15px;font-weight:bold;margin-bottom:6px;color:var(--text)}
 .empty-sub{font-size:13px}
 .toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--text);color:var(--card);padding:10px 20px;border-radius:50px;font-size:13px;font-weight:bold;z-index:999;transition:transform 0.3s;white-space:nowrap}
 .toast.show{transform:translateX(-50%) translateY(0)}
+.loading{text-align:center;padding:20px;color:var(--text-sub);font-size:13px}
 .hidden{display:none}
 </style>
 </head>
 <body>
+
 <div class="toast" id="toast"></div>
-<nav class="nav-bar">
-  <div class="nav-item active" onclick="switchTab('home')" id="nav-home"><div class="nav-icon">🏠</div><div>首頁</div></div>
-  <div class="nav-item" onclick="switchTab('records')" id="nav-records"><div class="nav-icon">📋</div><div>記錄</div></div>
-  <div class="nav-item" onclick="switchTab('stats')" id="nav-stats"><div class="nav-icon">📊</div><div>統計</div></div>
-  <div class="nav-item" onclick="switchTab('settings')" id="nav-settings"><div class="nav-icon">⚙️</div><div>設定</div></div>
-</nav>
-<button class="add-btn-float" onclick="openAddModal()">＋</button>
 
-<!-- 首頁 -->
-<div id="screen-home" class="screen active">
-  <div class="page-header">
-    <div class="page-title">就是記帳 💰</div>
-    <div class="page-sub" id="home-date"></div>
-  </div>
-  <div class="summary-card">
-    <div style="font-size:13px;opacity:0.85;margin-bottom:4px">本月收支總覽</div>
-    <div class="summary-balance" id="summary-balance">NT$ 0</div>
-    <div class="summary-row">
-      <div class="summary-item"><div class="summary-item-label">💸 支出</div><div class="summary-item-val" id="summary-expense">0</div></div>
-      <div class="summary-item"><div class="summary-item-label">💵 收入</div><div class="summary-item-val" id="summary-income">0</div></div>
+<!-- 登入/註冊畫面 -->
+<div id="auth-screen" class="auth-wrap">
+  <div class="auth-box">
+    <div class="auth-logo">💰</div>
+    <div class="auth-title">就是記帳</div>
+    <div class="auth-sub" id="auth-sub">登入你的帳號</div>
+    <input class="auth-input" type="email" id="auth-email" placeholder="電子郵件">
+    <input class="auth-input" type="password" id="auth-password" placeholder="密碼（6位數以上）">
+    <button class="btn btn-primary btn-full" id="auth-btn" onclick="handleAuth()">登入</button>
+    <div class="auth-switch" id="auth-switch">
+      還沒有帳號？<span onclick="toggleAuthMode()">立即註冊</span>
     </div>
-  </div>
-  <div class="date-nav">
-    <button class="date-nav-btn" onclick="changeHomeDate(-1)">‹</button>
-    <div class="date-nav-label" id="home-date-label">今天</div>
-    <button class="date-nav-btn" onclick="changeHomeDate(1)">›</button>
-  </div>
-  <div id="home-records"></div>
-</div>
-
-<!-- 記錄頁 -->
-<div id="screen-records" class="screen">
-  <div class="page-header">
-    <div class="page-title">所有記錄 📋</div>
-    <div class="page-sub">點擊記錄查看詳情</div>
-  </div>
-  <div style="padding:12px 16px;display:flex;gap:8px">
-    <button class="btn btn-sm btn-primary" id="filter-all" onclick="filterRecords('all')">全部</button>
-    <button class="btn btn-sm btn-outline" id="filter-expense" onclick="filterRecords('expense')">支出</button>
-    <button class="btn btn-sm btn-outline" id="filter-income" onclick="filterRecords('income')">收入</button>
-  </div>
-  <div id="records-list"></div>
-</div>
-
-<!-- 統計頁 -->
-<div id="screen-stats" class="screen">
-  <div class="page-header">
-    <div class="page-title">消費統計 📊</div>
-    <div class="page-sub">看看錢都花到哪裡去了</div>
-  </div>
-  <div class="period-selector">
-    <button class="period-btn active" onclick="setPeriod('day')" id="period-day">今日</button>
-    <button class="period-btn" onclick="setPeriod('week')" id="period-week">本週</button>
-    <button class="period-btn" onclick="setPeriod('month')" id="period-month">本月</button>
-    <button class="period-btn" onclick="setPeriod('custom')" id="period-custom">自訂區間</button>
-  </div>
-  <div id="custom-date-range" class="hidden" style="padding:0 16px;margin-bottom:8px;display:flex;gap:8px;align-items:center">
-    <input type="date" id="date-from" style="flex:1;padding:8px;border:2px solid var(--border);border-radius:10px;font-size:13px;outline:none;background:var(--card);color:var(--text)">
-    <span style="color:var(--text-sub)">～</span>
-    <input type="date" id="date-to" style="flex:1;padding:8px;border:2px solid var(--border);border-radius:10px;font-size:13px;outline:none;background:var(--card);color:var(--text)">
-    <button class="btn btn-sm btn-primary" onclick="applyCustomRange()">確認</button>
-  </div>
-  <div class="card">
-    <div class="card-title">💸 支出分布</div>
-    <div class="chart-wrap"><canvas id="pie-chart" width="200" height="200" style="max-width:200px;max-height:200px"></canvas></div>
-    <div class="legend-grid" id="chart-legend"></div>
-  </div>
-  <div class="card">
-    <div class="card-title">📈 各類別明細</div>
-    <div id="stat-detail-list"></div>
-  </div>
-  <div class="card">
-    <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-      <div><div style="font-size:12px;color:var(--text-sub)">總支出</div><div style="font-size:20px;font-weight:bold;color:var(--danger)" id="stat-total-expense">NT$ 0</div></div>
-      <div style="text-align:right"><div style="font-size:12px;color:var(--text-sub)">總收入</div><div style="font-size:20px;font-weight:bold;color:var(--success)" id="stat-total-income">NT$ 0</div></div>
-    </div>
-    <div style="border-top:1px solid var(--border);padding-top:8px;display:flex;justify-content:space-between;align-items:center">
-      <div style="font-size:13px;color:var(--text-sub)">結餘</div>
-      <div style="font-size:22px;font-weight:bold" id="stat-balance">NT$ 0</div>
+    <div style="margin-top:12px;text-align:center">
+      <span style="font-size:12px;color:var(--text-sub);cursor:pointer" onclick="useOfflineMode()">或者離線使用（不同步）</span>
     </div>
   </div>
 </div>
 
-<!-- 設定頁 -->
-<div id="screen-settings" class="screen">
-  <div class="page-header">
-    <div class="page-title">設定 ⚙️</div>
-    <div class="page-sub">個人化你的記帳體驗</div>
+<!-- 主應用 -->
+<div id="app" class="hidden">
+  <nav class="nav-bar">
+    <div class="nav-item active" onclick="switchTab('home')" id="nav-home"><div class="nav-icon">🏠</div><div>首頁</div></div>
+    <div class="nav-item" onclick="switchTab('records')" id="nav-records"><div class="nav-icon">📋</div><div>記錄</div></div>
+    <div class="nav-item" onclick="switchTab('stats')" id="nav-stats"><div class="nav-icon">📊</div><div>統計</div></div>
+    <div class="nav-item" onclick="switchTab('settings')" id="nav-settings"><div class="nav-icon">⚙️</div><div>設定</div></div>
+  </nav>
+  <button class="add-btn-float" onclick="openAddModal()">＋</button>
+
+  <!-- 首頁 -->
+  <div id="screen-home" class="screen active">
+    <div class="page-header">
+      <div class="page-title">就是記帳 💰</div>
+      <div class="page-sub" id="home-date"></div>
+    </div>
+    <div id="rate-bar" class="rate-bar">
+      <span>💱 匯率</span>
+      <span class="rate-val" id="rate-val">載入中...</span>
+      <span>JPY/NTD</span>
+      <span class="rate-time" id="rate-time"></span>
+    </div>
+    <div class="summary-card">
+      <div style="font-size:13px;opacity:0.85;margin-bottom:4px">本月收支總覽</div>
+      <div class="summary-balance" id="summary-balance">NT$ 0</div>
+      <div class="summary-row">
+        <div class="summary-item"><div class="summary-item-label">💸 支出</div><div class="summary-item-val" id="summary-expense">0</div></div>
+        <div class="summary-item"><div class="summary-item-label">💵 收入</div><div class="summary-item-val" id="summary-income">0</div></div>
+      </div>
+    </div>
+    <div class="date-nav">
+      <button class="date-nav-btn" onclick="changeHomeDate(-1)">‹</button>
+      <div class="date-nav-label" id="home-date-label">今天</div>
+      <button class="date-nav-btn" onclick="changeHomeDate(1)">›</button>
+    </div>
+    <div id="home-records"></div>
   </div>
-  <div class="card">
-    <div class="card-title">🎨 主題色調</div>
-    <div class="theme-grid" id="theme-grid"></div>
+
+  <!-- 記錄頁 -->
+  <div id="screen-records" class="screen">
+    <div class="page-header">
+      <div class="page-title">所有記錄 📋</div>
+      <div class="page-sub">點擊記錄查看詳情</div>
+    </div>
+    <div style="padding:12px 16px;display:flex;gap:8px">
+      <button class="btn btn-sm btn-primary" id="filter-all" onclick="filterRecords('all')">全部</button>
+      <button class="btn btn-sm btn-outline" id="filter-expense" onclick="filterRecords('expense')">支出</button>
+      <button class="btn btn-sm btn-outline" id="filter-income" onclick="filterRecords('income')">收入</button>
+    </div>
+    <div id="records-list"></div>
   </div>
-  <div class="card">
-    <div class="card-title">💱 貨幣設定</div>
-    <div class="type-switch" style="margin-bottom:0">
-      <button class="type-btn active" id="currency-ntd-btn" onclick="setCurrency('NTD')">🇹🇼 台幣 NT$</button>
-      <button class="type-btn" id="currency-jpy-btn" onclick="setCurrency('JPY')">🇯🇵 日幣 ¥</button>
+
+  <!-- 統計頁 -->
+  <div id="screen-stats" class="screen">
+    <div class="page-header">
+      <div class="page-title">消費統計 📊</div>
+      <div class="page-sub">看看錢都花到哪裡去了</div>
+    </div>
+    <div class="period-selector">
+      <button class="period-btn active" onclick="setPeriod('day')" id="period-day">今日</button>
+      <button class="period-btn" onclick="setPeriod('week')" id="period-week">本週</button>
+      <button class="period-btn" onclick="setPeriod('month')" id="period-month">本月</button>
+      <button class="period-btn" onclick="setPeriod('custom')" id="period-custom">自訂區間</button>
+    </div>
+    <div id="custom-date-range" class="hidden" style="padding:0 16px;margin-bottom:8px;display:flex;gap:8px;align-items:center">
+      <input type="date" id="date-from" style="flex:1;padding:8px;border:2px solid var(--border);border-radius:10px;font-size:13px;outline:none;background:var(--card);color:var(--text)">
+      <span style="color:var(--text-sub)">～</span>
+      <input type="date" id="date-to" style="flex:1;padding:8px;border:2px solid var(--border);border-radius:10px;font-size:13px;outline:none;background:var(--card);color:var(--text)">
+      <button class="btn btn-sm btn-primary" onclick="applyCustomRange()">確認</button>
+    </div>
+    <div class="card">
+      <div class="card-title">💸 支出分布</div>
+      <div class="chart-wrap"><canvas id="pie-chart" width="200" height="200" style="max-width:200px;max-height:200px"></canvas></div>
+      <div class="legend-grid" id="chart-legend"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📈 每月支出趨勢</div>
+      <div class="line-chart-wrap">
+        <canvas id="line-chart" height="160" style="width:100%;min-width:300px"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">📋 各類別明細</div>
+      <div id="stat-detail-list"></div>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+        <div><div style="font-size:12px;color:var(--text-sub)">總支出</div><div style="font-size:20px;font-weight:bold;color:var(--danger)" id="stat-total-expense">NT$ 0</div></div>
+        <div style="text-align:right"><div style="font-size:12px;color:var(--text-sub)">總收入</div><div style="font-size:20px;font-weight:bold;color:var(--success)" id="stat-total-income">NT$ 0</div></div>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:8px;display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:13px;color:var(--text-sub)">結餘</div>
+        <div style="font-size:22px;font-weight:bold" id="stat-balance">NT$ 0</div>
+      </div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-title">🔔 每日提醒</div>
-    <div class="setting-item" style="cursor:default">
-      <div class="setting-icon">🔔</div>
-      <div class="setting-info"><div class="setting-name">開啟提醒</div><div class="setting-desc">每天提醒你記帳</div></div>
-      <div class="toggle" id="reminder-toggle" onclick="toggleReminder()"></div>
+
+  <!-- 設定頁 -->
+  <div id="screen-settings" class="screen">
+    <div class="page-header">
+      <div class="page-title">設定 ⚙️</div>
+      <div class="page-sub">個人化你的記帳體驗</div>
     </div>
-    <div id="reminder-time-row" class="setting-item hidden" style="cursor:default">
-      <div class="setting-icon">🕐</div>
-      <div class="setting-info"><div class="setting-name">提醒時間</div></div>
-      <input type="time" id="reminder-time" class="time-input" value="21:00" onchange="saveReminderTime()">
+    <div class="card">
+      <div class="card-title">👤 帳號</div>
+      <div class="setting-item" style="cursor:default">
+        <div class="setting-icon">📧</div>
+        <div class="setting-info"><div class="setting-name" id="user-email-display">未登入</div><div class="setting-desc" id="sync-status">離線模式</div></div>
+      </div>
+      <div class="setting-item" onclick="logout()">
+        <div class="setting-icon">🚪</div>
+        <div class="setting-info"><div class="setting-name">登出</div></div>
+        <div class="setting-arrow">›</div>
+      </div>
     </div>
+    <div class="card">
+      <div class="card-title">🎨 主題色調</div>
+      <div class="theme-grid" id="theme-grid"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">💱 貨幣設定</div>
+      <div class="type-switch" style="margin-bottom:0">
+        <button class="type-btn active" id="currency-ntd-btn" onclick="setCurrency('NTD')">🇹🇼 台幣 NT$</button>
+        <button class="type-btn" id="currency-jpy-btn" onclick="setCurrency('JPY')">🇯🇵 日幣 ¥</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🔔 每日提醒</div>
+      <div class="setting-item" style="cursor:default">
+        <div class="setting-icon">🔔</div>
+        <div class="setting-info"><div class="setting-name">開啟提醒</div><div class="setting-desc">每天提醒你記帳</div></div>
+        <div class="toggle" id="reminder-toggle" onclick="toggleReminder()"></div>
+      </div>
+      <div id="reminder-time-row" class="setting-item hidden" style="cursor:default">
+        <div class="setting-icon">🕐</div>
+        <div class="setting-info"><div class="setting-name">提醒時間</div></div>
+        <input type="time" id="reminder-time" class="time-input" value="21:00" onchange="saveReminderTime()">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗂️ 自訂類別</div>
+      <div id="custom-cats-list"></div>
+      <button class="btn btn-outline btn-full" style="margin-top:8px" onclick="openAddCatModal()">＋ 新增自訂細項</button>
+    </div>
+    <div class="card">
+      <div class="card-title">🗃️ 資料管理</div>
+      <div class="setting-item" onclick="exportData()">
+        <div class="setting-icon">📤</div>
+        <div class="setting-info"><div class="setting-name">匯出資料</div><div class="setting-desc">下載所有記帳記錄</div></div>
+        <div class="setting-arrow">›</div>
+      </div>
+      <div class="setting-item" onclick="clearAllData()">
+        <div class="setting-icon">🗑️</div>
+        <div class="setting-info"><div class="setting-name">清除所有資料</div><div class="setting-desc">刪除全部記錄（無法復原）</div></div>
+        <div class="setting-arrow">›</div>
+      </div>
+    </div>
+    <div style="text-align:center;padding:20px;color:var(--text-sub);font-size:12px">就是記帳 v3.0 💕<br>支援雲端同步</div>
   </div>
-  <div class="card">
-    <div class="card-title">🗂️ 自訂類別</div>
-    <div id="custom-cats-list"></div>
-    <button class="btn btn-outline btn-full" style="margin-top:8px" onclick="openAddCatModal()">＋ 新增自訂細項</button>
-  </div>
-  <div class="card">
-    <div class="card-title">🗃️ 資料管理</div>
-    <div class="setting-item" onclick="exportData()">
-      <div class="setting-icon">📤</div>
-      <div class="setting-info"><div class="setting-name">匯出資料</div><div class="setting-desc">下載所有記帳記錄</div></div>
-      <div class="setting-arrow">›</div>
-    </div>
-    <div class="setting-item" onclick="clearAllData()">
-      <div class="setting-icon">🗑️</div>
-      <div class="setting-info"><div class="setting-name">清除所有資料</div><div class="setting-desc">刪除全部記錄（無法復原）</div></div>
-      <div class="setting-arrow">›</div>
-    </div>
-  </div>
-  <div style="text-align:center;padding:20px;color:var(--text-sub);font-size:12px">就是記帳 v2.0 💕<br>資料儲存在您的裝置上</div>
 </div>
 
 <!-- 新增記帳 Modal -->
@@ -304,6 +368,7 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
         <button class="currency-btn" id="add-curr-jpy" onclick="setAddCurrency('JPY')">¥</button>
       </div>
       <div class="amount-number"><span class="amount-currency" id="add-curr-symbol">NT$</span><span id="add-amount-display">0</span></div>
+      <div id="add-convert-display" style="font-size:12px;color:var(--text-sub);margin-top:4px"></div>
     </div>
     <div class="numpad">
       <button class="numpad-key" onclick="numpadPress('7')">7</button><button class="numpad-key" onclick="numpadPress('8')">8</button><button class="numpad-key" onclick="numpadPress('9')">9</button>
@@ -328,6 +393,7 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
         <div>
           <div style="font-size:13px;color:var(--text-sub)" id="detail-cat-name"></div>
           <div class="detail-amount-big" id="detail-amount"></div>
+          <div style="font-size:12px;color:var(--text-sub);margin-top:2px" id="detail-convert"></div>
         </div>
       </div>
       <div class="detail-row"><div class="detail-label">日期</div><div class="detail-value" id="detail-date"></div></div>
@@ -391,15 +457,16 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
     <button class="btn btn-primary btn-full" onclick="saveCustomSubcat()">新增 ✓</button>
   </div>
 </div>
-
 <script>
+const API_URL='https://moneybook-api.onrender.com';
+
 const THEMES=[
-  {id:'pink',name:'粉紅少女',sub:'預設',color:'#FF6B9D',bg:'#FFF5F8'},
-  {id:'ocean',name:'海洋藍',sub:'清爽',color:'#3B82F6',bg:'#F0F9FF'},
-  {id:'matcha',name:'抹茶綠',sub:'自然',color:'#10B981',bg:'#F0FDF4'},
-  {id:'night',name:'深夜模式',sub:'護眼',color:'#8B5CF6',bg:'#0F0A1E'},
-  {id:'orange',name:'橘子汽水',sub:'活潑',color:'#F59E0B',bg:'#FFFBEB'},
-  {id:'sakura',name:'櫻花白',sub:'簡約',color:'#EC4899',bg:'#FFF0F6'}
+  {id:'pink',name:'粉紅少女',sub:'預設',color:'#FF6B9D'},
+  {id:'ocean',name:'海洋藍',sub:'清爽',color:'#3B82F6'},
+  {id:'matcha',name:'抹茶綠',sub:'自然',color:'#10B981'},
+  {id:'night',name:'深夜模式',sub:'護眼',color:'#8B5CF6'},
+  {id:'orange',name:'橘子汽水',sub:'活潑',color:'#F59E0B'},
+  {id:'sakura',name:'櫻花白',sub:'簡約',color:'#EC4899'}
 ];
 
 const CATEGORIES={
@@ -447,62 +514,171 @@ const EMOJI_OPTIONS=['🍕','🍔','🍣','🧁','🥗','🍺','🎸','🎯','�
 let appState={
   records:[],currency:'NTD',customSubs:{},theme:'pink',
   reminderOn:false,reminderTime:'21:00',
+  token:null,userEmail:null,isOffline:false,
   currentTab:'home',addType:'expense',addCurrency:'NTD',
   addAmount:'',addCategory:'',addSubcat:'',
   editId:null,editType:'expense',editCurrency:'NTD',editAmount:'',editCategory:'',editSubcat:'',
   statPeriod:'month',statFrom:null,statTo:null,filterType:'all',
-  homeDate:new Date()
+  homeDate:new Date(),authMode:'login',
+  exchangeRate:null,rateUpdatedAt:null
 };
 
 let reminderTimer=null;
 
-function saveData(){
+/* ==========================================
+   存讀檔
+   ========================================== */
+function saveLocal(){
   try{
     localStorage.setItem('moneybook_v1',JSON.stringify({
-      records:appState.records,currency:appState.currency,
-      customSubs:appState.customSubs,theme:appState.theme,
-      reminderOn:appState.reminderOn,reminderTime:appState.reminderTime
+      currency:appState.currency,customSubs:appState.customSubs,
+      theme:appState.theme,reminderOn:appState.reminderOn,
+      reminderTime:appState.reminderTime,token:appState.token,
+      userEmail:appState.userEmail,isOffline:appState.isOffline,
+      records:appState.isOffline?appState.records:[]
     }));
   }catch(e){}
 }
 
-function loadData(){
+function loadLocal(){
   try{
     const raw=localStorage.getItem('moneybook_v1');
     if(!raw) return;
     const d=JSON.parse(raw);
-    appState.records=d.records||[];
     appState.currency=d.currency||'NTD';
     appState.customSubs=d.customSubs||{};
     appState.theme=d.theme||'pink';
     appState.reminderOn=d.reminderOn||false;
     appState.reminderTime=d.reminderTime||'21:00';
+    appState.token=d.token||null;
+    appState.userEmail=d.userEmail||null;
+    appState.isOffline=d.isOffline||false;
+    if(d.records&&appState.isOffline) appState.records=d.records;
   }catch(e){}
 }
 
-function applyTheme(themeId){
-  const t=THEMES.find(t=>t.id===themeId)||THEMES[0];
-  document.body.setAttribute('data-theme',themeId==='pink'?'':themeId);
-  const meta=document.getElementById('theme-color-meta');
-  if(meta) meta.content=t.color;
-  appState.theme=themeId;
+/* ==========================================
+   API 呼叫
+   ========================================== */
+async function apiCall(method,path,body=null){
+  const headers={'Content-Type':'application/json'};
+  if(appState.token) headers['Authorization']=`Bearer ${appState.token}`;
+  const opts={method,headers};
+  if(body) opts.body=JSON.stringify(body);
+  const res=await fetch(API_URL+path,opts);
+  const data=await res.json();
+  if(!res.ok) throw new Error(data.error||'API 錯誤');
+  return data;
 }
 
-function buildThemeGrid(){
-  const grid=document.getElementById('theme-grid');
-  if(!grid) return;
-  grid.innerHTML=THEMES.map(t=>`
-    <div class="theme-card ${appState.theme===t.id?'selected':''}" onclick="selectTheme('${t.id}')">
-      <div class="theme-preview" style="background:${t.color}"></div>
-      <div class="theme-name">${t.name}</div>
-      <div class="theme-sub">${t.sub}</div>
-    </div>`).join('');
+/* ==========================================
+   匯率
+   ========================================== */
+async function fetchExchangeRate(){
+  try{
+    const res=await fetch('https://api.exchangerate-api.com/v4/latest/JPY');
+    const data=await res.json();
+    const rate=data.rates?.TWD||0.22;
+    appState.exchangeRate=rate;
+    appState.rateUpdatedAt=new Date();
+    const rateEl=document.getElementById('rate-val');
+    const timeEl=document.getElementById('rate-time');
+    if(rateEl) rateEl.textContent=`1¥ = NT$${rate.toFixed(4)}`;
+    if(timeEl) timeEl.textContent=`更新：${formatTime(new Date().toISOString())}`;
+  }catch(e){
+    appState.exchangeRate=0.22;
+    const rateEl=document.getElementById('rate-val');
+    if(rateEl) rateEl.textContent='1¥ ≈ NT$0.22';
+  }
 }
 
-function selectTheme(id){
-  applyTheme(id);saveData();buildThemeGrid();showToast('主題已切換 🎨');
+function convertAmount(amount,fromCurrency){
+  if(!appState.exchangeRate) return null;
+  if(fromCurrency==='JPY'){
+    return`≈ NT$${Math.round(amount*appState.exchangeRate).toLocaleString()}`;
+  }else{
+    return`≈ ¥${Math.round(amount/appState.exchangeRate).toLocaleString()}`;
+  }
 }
 
+/* ==========================================
+   帳號系統
+   ========================================== */
+let authMode='login';
+
+function toggleAuthMode(){
+  authMode=authMode==='login'?'register':'login';
+  document.getElementById('auth-sub').textContent=authMode==='login'?'登入你的帳號':'建立新帳號';
+  document.getElementById('auth-btn').textContent=authMode==='login'?'登入':'註冊';
+  document.getElementById('auth-switch').innerHTML=authMode==='login'?
+    '還沒有帳號？<span onclick="toggleAuthMode()">立即註冊</span>':
+    '已有帳號？<span onclick="toggleAuthMode()">返回登入</span>';
+}
+
+async function handleAuth(){
+  const email=document.getElementById('auth-email').value.trim();
+  const password=document.getElementById('auth-password').value;
+  if(!email||!password){showToast('請填寫信箱和密碼');return;}
+  const btn=document.getElementById('auth-btn');
+  btn.textContent='處理中...';btn.disabled=true;
+  try{
+    const path=authMode==='login'?'/auth/login':'/auth/register';
+    const data=await apiCall('POST',path,{email,password});
+    if(authMode==='register'){
+      showToast('註冊成功！請登入 🎉');
+      toggleAuthMode();
+    }else{
+      appState.token=data.token;
+      appState.userEmail=email;
+      appState.isOffline=false;
+      saveLocal();
+      await loadCloudRecords();
+      showApp();
+    }
+  }catch(e){
+    showToast(e.message||'發生錯誤，請再試一次');
+  }finally{
+    btn.textContent=authMode==='login'?'登入':'註冊';
+    btn.disabled=false;
+  }
+}
+
+function useOfflineMode(){
+  appState.isOffline=true;appState.token=null;appState.userEmail=null;
+  saveLocal();showApp();
+}
+
+function showApp(){
+  document.getElementById('auth-screen').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+  applyTheme(appState.theme);
+  fetchExchangeRate();
+  if(appState.reminderOn) scheduleReminder();
+  renderHome();
+}
+
+function logout(){
+  if(!confirm('確定要登出嗎？')) return;
+  appState.token=null;appState.userEmail=null;appState.records=[];appState.isOffline=false;
+  saveLocal();
+  document.getElementById('app').classList.add('hidden');
+  document.getElementById('auth-screen').classList.remove('hidden');
+  showToast('已登出');
+}
+
+async function loadCloudRecords(){
+  if(appState.isOffline||!appState.token) return;
+  try{
+    const data=await apiCall('GET','/records');
+    appState.records=data.records||[];
+  }catch(e){
+    showToast('載入記錄失敗，使用本地資料');
+  }
+}
+
+/* ==========================================
+   工具函式
+   ========================================== */
 function formatAmount(amount,currency){
   const cur=currency||appState.currency;
   if(cur==='JPY') return`¥${Math.round(amount).toLocaleString()}`;
@@ -526,7 +702,7 @@ function getDateStr(date){return date.toISOString().split('T')[0];}
 function showToast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2000);
+  setTimeout(()=>t.classList.remove('show'),2500);
 }
 
 function getCatInfo(type,catId,subcatId){
@@ -539,6 +715,17 @@ function getCatInfo(type,catId,subcatId){
   return sub?{name:sub.name,icon:sub.icon,color:cat.color}:{name:cat.name,icon:cat.icon,color:cat.color};
 }
 
+function applyTheme(themeId){
+  const t=THEMES.find(t=>t.id===themeId)||THEMES[0];
+  document.body.setAttribute('data-theme',themeId==='pink'?'':themeId);
+  const meta=document.getElementById('theme-color-meta');
+  if(meta) meta.content=t.color;
+  appState.theme=themeId;
+}
+
+/* ==========================================
+   導航
+   ========================================== */
 function switchTab(tab){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
@@ -551,13 +738,15 @@ function switchTab(tab){
   if(tab==='settings') renderSettings();
 }
 
+/* ==========================================
+   首頁
+   ========================================== */
 function changeHomeDate(dir){
   const d=new Date(appState.homeDate);
   d.setDate(d.getDate()+dir);
   const now=new Date();
   if(d>now) return;
-  appState.homeDate=d;
-  renderHome();
+  appState.homeDate=d;renderHome();
 }
 
 function renderHome(){
@@ -566,7 +755,6 @@ function renderHome(){
   document.getElementById('home-date').textContent=
     `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日`;
   document.getElementById('home-date-label').textContent=formatDateLabel(hd);
-
   const monthStart=new Date(now.getFullYear(),now.getMonth(),1);
   const monthRecords=appState.records.filter(r=>{const d=new Date(r.date);return d>=monthStart&&d<=now;});
   const expense=monthRecords.filter(r=>r.type==='expense').reduce((s,r)=>s+r.amount,0);
@@ -575,10 +763,11 @@ function renderHome(){
   document.getElementById('summary-balance').textContent=(balance>=0?'+':'')+formatAmount(balance);
   document.getElementById('summary-expense').textContent=formatAmount(expense);
   document.getElementById('summary-income').textContent=formatAmount(income);
-
   const dateStr=getDateStr(hd);
-  const dayRecords=appState.records.filter(r=>r.date.startsWith(dateStr))
-    .sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const dayRecords=appState.records.filter(r=>{
+    const rDate=r.date?r.date.split('T')[0]:null;
+    return rDate===dateStr;
+  }).sort((a,b)=>new Date(b.date)-new Date(a.date));
   const container=document.getElementById('home-records');
   if(dayRecords.length===0){
     container.innerHTML=`<div class="empty-state"><div class="empty-icon">🌸</div><div class="empty-text">${formatDateLabel(hd)}還沒有記錄</div><div class="empty-sub">點右下角 ＋ 開始記帳吧！</div></div>`;
@@ -587,11 +776,14 @@ function renderHome(){
   container.innerHTML=dayRecords.map(r=>recordItemHTML(r,true)).join('');
 }
 
+/* ==========================================
+   記錄列表
+   ========================================== */
 function renderRecords(){
   const filtered=appState.filterType==='all'?appState.records:appState.records.filter(r=>r.type===appState.filterType);
   const sorted=[...filtered].sort((a,b)=>new Date(b.date)-new Date(a.date));
   const groups={};
-  sorted.forEach(r=>{const k=r.date.split('T')[0];if(!groups[k])groups[k]=[];groups[k].push(r);});
+  sorted.forEach(r=>{const k=r.date?r.date.split('T')[0]:getDateStr(new Date());if(!groups[k])groups[k]=[];groups[k].push(r);});
   const container=document.getElementById('records-list');
   if(sorted.length===0){
     container.innerHTML=`<div class="empty-state"><div class="empty-icon">📭</div><div class="empty-text">沒有記錄</div><div class="empty-sub">開始記錄你的收支吧！</div></div>`;
@@ -635,6 +827,9 @@ function filterRecords(type){
   renderRecords();
 }
 
+/* ==========================================
+   詳細頁面
+   ========================================== */
 function openDetail(id){
   const r=appState.records.find(r=>r.id===id);
   if(!r) return;
@@ -647,6 +842,9 @@ function openDetail(id){
   document.getElementById('detail-cat-name').textContent=info.name;
   document.getElementById('detail-amount').textContent=(isExpense?'-':'+')+formatAmount(r.amount,r.currency);
   document.getElementById('detail-amount').style.color=isExpense?'var(--danger)':'var(--success)';
+  const converted=convertAmount(r.amount,r.currency);
+  const convertEl=document.getElementById('detail-convert');
+  if(converted&&convertEl) convertEl.textContent=converted;
   document.getElementById('detail-date').textContent=`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
   document.getElementById('detail-time').textContent=formatTime(r.date);
   document.getElementById('detail-type').textContent=isExpense?'💸 支出':'💵 收入';
@@ -663,13 +861,9 @@ function openDetail(id){
 function openEditMode(){
   const r=appState.records.find(r=>r.id===appState.editId);
   if(!r) return;
-  appState.editType=r.type;
-  appState.editCurrency=r.currency;
-  appState.editAmount=String(r.amount);
-  appState.editCategory=r.cat;
-  appState.editSubcat=r.subcat;
-  setEditType(r.type);
-  setEditCurrency(r.currency);
+  appState.editType=r.type;appState.editCurrency=r.currency;
+  appState.editAmount=String(r.amount);appState.editCategory=r.cat;appState.editSubcat=r.subcat;
+  setEditType(r.type);setEditCurrency(r.currency);
   document.getElementById('edit-amount-display').textContent=String(r.amount);
   document.getElementById('edit-note').value=r.note||'';
   document.getElementById('detail-view').classList.add('hidden');
@@ -714,8 +908,7 @@ function buildEditCatTabs(){
 }
 
 function selectEditCat(catId){
-  appState.editCategory=catId;appState.editSubcat='';
-  buildEditCatTabs();buildEditSubcatGrid();
+  appState.editCategory=catId;appState.editSubcat='';buildEditCatTabs();buildEditSubcatGrid();
 }
 
 function buildEditSubcatGrid(){
@@ -726,46 +919,59 @@ function buildEditSubcatGrid(){
   const allSubs=[...cat.subs,...customs];
   document.getElementById('edit-subcat-grid').innerHTML=allSubs.map(s=>`
     <div class="subcat-item ${appState.editSubcat===s.id?'selected':''}" onclick="selectEditSubcat('${s.id}')">
-      <div class="subcat-icon">${s.icon}</div>
-      <div class="subcat-name">${s.name}</div>
+      <div class="subcat-icon">${s.icon}</div><div class="subcat-name">${s.name}</div>
     </div>`).join('');
 }
 
 function selectEditSubcat(id){appState.editSubcat=id;buildEditSubcatGrid();}
 
-function saveEdit(){
+async function saveEdit(){
   const amount=parseFloat(appState.editAmount);
   if(!amount||amount<=0){showToast('請輸入金額 💰');return;}
   if(!appState.editCategory){showToast('請選擇類別 📂');return;}
-  const idx=appState.records.findIndex(r=>r.id===appState.editId);
-  if(idx===-1) return;
-  appState.records[idx]={
-    ...appState.records[idx],
+  const updates={
     type:appState.editType,currency:appState.editCurrency,amount,
     cat:appState.editCategory,subcat:appState.editSubcat,
     note:document.getElementById('edit-note').value.trim()
   };
-  saveData();
-  document.getElementById('detail-modal').classList.remove('show');
-  showToast('已儲存 ✓');
-  if(appState.currentTab==='home') renderHome();
-  if(appState.currentTab==='records') renderRecords();
+  try{
+    if(!appState.isOffline){
+      const data=await apiCall('PUT',`/records/${appState.editId}`,updates);
+      const idx=appState.records.findIndex(r=>r.id===appState.editId);
+      if(idx!==-1) appState.records[idx]={...appState.records[idx],...updates};
+    }else{
+      const idx=appState.records.findIndex(r=>r.id===appState.editId);
+      if(idx!==-1) appState.records[idx]={...appState.records[idx],...updates};
+      saveLocal();
+    }
+    document.getElementById('detail-modal').classList.remove('show');
+    showToast('已儲存 ✓');
+    if(appState.currentTab==='home') renderHome();
+    if(appState.currentTab==='records') renderRecords();
+  }catch(e){showToast('儲存失敗：'+e.message);}
 }
 
-function deleteCurrentRecord(){
+async function deleteCurrentRecord(){
   if(!confirm('確定要刪除這筆記錄嗎？')) return;
-  appState.records=appState.records.filter(r=>r.id!==appState.editId);
-  saveData();
-  document.getElementById('detail-modal').classList.remove('show');
-  showToast('已刪除 🗑️');
-  if(appState.currentTab==='home') renderHome();
-  if(appState.currentTab==='records') renderRecords();
+  try{
+    if(!appState.isOffline) await apiCall('DELETE',`/records/${appState.editId}`);
+    appState.records=appState.records.filter(r=>r.id!==appState.editId);
+    if(appState.isOffline) saveLocal();
+    document.getElementById('detail-modal').classList.remove('show');
+    showToast('已刪除 🗑️');
+    if(appState.currentTab==='home') renderHome();
+    if(appState.currentTab==='records') renderRecords();
+  }catch(e){showToast('刪除失敗：'+e.message);}
 }
 
+/* ==========================================
+   新增記帳
+   ========================================== */
 function openAddModal(){
   appState.addAmount='';appState.addCategory='';appState.addSubcat='';
   document.getElementById('add-amount-display').textContent='0';
   document.getElementById('add-note').value='';
+  document.getElementById('add-convert-display').textContent='';
   setAddType('expense');
   document.getElementById('add-modal').classList.add('show');
 }
@@ -784,6 +990,18 @@ function setAddCurrency(cur){
   appState.addCurrency=cur;
   ['NTD','JPY'].forEach(c=>document.getElementById(`add-curr-${c.toLowerCase()}`).classList.toggle('active',c===cur));
   document.getElementById('add-curr-symbol').textContent=cur==='JPY'?'¥':'NT$';
+  updateConvertDisplay();
+}
+
+function updateConvertDisplay(){
+  const amt=parseFloat(appState.addAmount);
+  const el=document.getElementById('add-convert-display');
+  if(!el) return;
+  if(amt>0&&appState.exchangeRate){
+    el.textContent=convertAmount(amt,appState.addCurrency)||'';
+  }else{
+    el.textContent='';
+  }
 }
 
 function numpadPress(key){
@@ -793,6 +1011,7 @@ function numpadPress(key){
   else{if(!amt||amt==='0') amt=key;else if(amt.includes('.')&&amt.split('.')[1].length>=2) return;else amt+=key;}
   appState.addAmount=amt;
   document.getElementById('add-amount-display').textContent=amt||'0';
+  updateConvertDisplay();
 }
 
 function buildCatTabs(){
@@ -817,8 +1036,7 @@ function buildSubcatGrid(){
   const allSubs=[...cat.subs,...customs];
   document.getElementById('add-subcat-grid').innerHTML=allSubs.map(s=>`
     <div class="subcat-item ${appState.addSubcat===s.id?'selected':''}" onclick="selectSubcat('${s.id}')">
-      <div class="subcat-icon">${s.icon}</div>
-      <div class="subcat-name">${s.name}</div>
+      <div class="subcat-icon">${s.icon}</div><div class="subcat-name">${s.name}</div>
     </div>`).join('')+`
     <div class="subcat-item" style="border-style:dashed" onclick="openAddCatModal()">
       <div class="subcat-icon">＋</div><div class="subcat-name">自訂</div>
@@ -827,23 +1045,35 @@ function buildSubcatGrid(){
 
 function selectSubcat(id){appState.addSubcat=id;buildSubcatGrid();}
 
-function saveRecord(){
+async function saveRecord(){
   const amount=parseFloat(appState.addAmount);
   if(!amount||amount<=0){showToast('請輸入金額 💰');return;}
   if(!appState.addCategory){showToast('請選擇類別 📂');return;}
   const record={
-    id:Date.now().toString(),date:new Date().toISOString(),
-    type:appState.addType,currency:appState.addCurrency,amount,
+    date:new Date().toISOString(),type:appState.addType,
+    currency:appState.addCurrency,amount,
     cat:appState.addCategory,subcat:appState.addSubcat,
     note:document.getElementById('add-note').value.trim()
   };
-  appState.records.push(record);saveData();
-  document.getElementById('add-modal').classList.remove('show');
-  showToast('記錄完成 ✨');
-  if(appState.currentTab==='home') renderHome();
-  if(appState.currentTab==='records') renderRecords();
+  try{
+    if(!appState.isOffline){
+      const data=await apiCall('POST','/records',record);
+      appState.records.unshift(data.record);
+    }else{
+      record.id=Date.now().toString();
+      appState.records.unshift(record);
+      saveLocal();
+    }
+    document.getElementById('add-modal').classList.remove('show');
+    showToast('記錄完成 ✨');
+    if(appState.currentTab==='home') renderHome();
+    if(appState.currentTab==='records') renderRecords();
+  }catch(e){showToast('新增失敗：'+e.message);}
 }
 
+/* ==========================================
+   統計
+   ========================================== */
 function setPeriod(period){
   appState.statPeriod=period;
   document.querySelectorAll('.period-btn').forEach(b=>b.classList.remove('active'));
@@ -885,7 +1115,9 @@ function renderStats(){
   const catGroups={};
   expenses.forEach(r=>{if(!catGroups[r.cat])catGroups[r.cat]=0;catGroups[r.cat]+=r.amount;});
   const sorted=Object.entries(catGroups).sort((a,b)=>b[1]-a[1]);
-  drawPieChart(sorted,totalExp);renderStatDetail(sorted,totalExp);
+  drawPieChart(sorted,totalExp);
+  drawLineChart();
+  renderStatDetail(sorted,totalExp);
 }
 
 function drawPieChart(data,total){
@@ -918,6 +1150,70 @@ function drawPieChart(data,total){
     </div>`).join('');
 }
 
+function drawLineChart(){
+  const canvas=document.getElementById('line-chart');
+  if(!canvas) return;
+  const W=canvas.offsetWidth||300;
+  canvas.width=W;
+  const H=160;canvas.height=H;
+  const ctx=canvas.getContext('2d');
+  ctx.clearRect(0,0,W,H);
+  const now=new Date();
+  const months=[];
+  for(let i=5;i>=0;i--){
+    const d=new Date(now.getFullYear(),now.getMonth()-i,1);
+    months.push({year:d.getFullYear(),month:d.getMonth(),label:`${d.getMonth()+1}月`});
+  }
+  const expData=months.map(m=>{
+    return appState.records.filter(r=>{
+      const d=new Date(r.date);
+      return r.type==='expense'&&d.getFullYear()===m.year&&d.getMonth()===m.month;
+    }).reduce((s,r)=>s+r.amount,0);
+  });
+  const incData=months.map(m=>{
+    return appState.records.filter(r=>{
+      const d=new Date(r.date);
+      return r.type==='income'&&d.getFullYear()===m.year&&d.getMonth()===m.month;
+    }).reduce((s,r)=>s+r.amount,0);
+  });
+  const maxVal=Math.max(...expData,...incData,1);
+  const padL=40;const padR=10;const padT=16;const padB=28;
+  const chartW=W-padL-padR;const chartH=H-padT-padB;
+  ctx.strokeStyle='rgba(0,0,0,0.06)';ctx.lineWidth=1;
+  for(let i=0;i<=4;i++){
+    const y=padT+chartH*(i/4);
+    ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();
+    ctx.fillStyle='#9B7FA6';ctx.font='9px sans-serif';ctx.textAlign='right';
+    ctx.fillText(Math.round(maxVal*(1-i/4)/1000)+'k',padL-4,y+3);
+  }
+  ctx.fillStyle='#9B7FA6';ctx.font='10px sans-serif';ctx.textAlign='center';
+  months.forEach((m,i)=>{
+    const x=padL+chartW*(i/(months.length-1));
+    ctx.fillText(m.label,x,H-6);
+  });
+  function drawLine(data,color){
+    ctx.beginPath();ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.lineJoin='round';
+    data.forEach((val,i)=>{
+      const x=padL+chartW*(i/(months.length-1));
+      const y=padT+chartH*(1-val/maxVal);
+      if(i===0) ctx.moveTo(x,y);else ctx.lineTo(x,y);
+    });
+    ctx.stroke();
+    data.forEach((val,i)=>{
+      const x=padL+chartW*(i/(months.length-1));
+      const y=padT+chartH*(1-val/maxVal);
+      ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);
+      ctx.fillStyle=color;ctx.fill();
+      ctx.strokeStyle='white';ctx.lineWidth=1.5;ctx.stroke();
+    });
+  }
+  drawLine(expData,'#F87171');
+  drawLine(incData,'#34D399');
+  ctx.font='10px sans-serif';ctx.textAlign='left';
+  ctx.fillStyle='#F87171';ctx.fillText('■ 支出',padL,12);
+  ctx.fillStyle='#34D399';ctx.fillText('■ 收入',padL+44,12);
+}
+
 function renderStatDetail(data,total){
   const container=document.getElementById('stat-detail-list');
   if(data.length===0){container.innerHTML='<div style="text-align:center;color:var(--text-sub);padding:20px;font-size:13px">這段期間沒有支出記錄</div>';return;}
@@ -939,6 +1235,24 @@ function renderStatDetail(data,total){
   }).join('');
 }
 
+/* ==========================================
+   設定
+   ========================================== */
+function buildThemeGrid(){
+  const grid=document.getElementById('theme-grid');
+  if(!grid) return;
+  grid.innerHTML=THEMES.map(t=>`
+    <div class="theme-card ${appState.theme===t.id?'selected':''}" onclick="selectTheme('${t.id}')">
+      <div class="theme-preview" style="background:${t.color}"></div>
+      <div class="theme-name">${t.name}</div>
+      <div class="theme-sub">${t.sub}</div>
+    </div>`).join('');
+}
+
+function selectTheme(id){
+  applyTheme(id);saveLocal();buildThemeGrid();showToast('主題已切換 🎨');
+}
+
 function renderSettings(){
   document.getElementById('currency-ntd-btn').classList.toggle('active',appState.currency==='NTD');
   document.getElementById('currency-jpy-btn').classList.toggle('active',appState.currency==='JPY');
@@ -946,11 +1260,15 @@ function renderSettings(){
   toggle.classList.toggle('on',appState.reminderOn);
   document.getElementById('reminder-time-row').classList.toggle('hidden',!appState.reminderOn);
   document.getElementById('reminder-time').value=appState.reminderTime;
+  const emailEl=document.getElementById('user-email-display');
+  const syncEl=document.getElementById('sync-status');
+  if(emailEl) emailEl.textContent=appState.userEmail||'離線模式';
+  if(syncEl) syncEl.textContent=appState.isOffline?'離線模式（資料存在本機）':'雲端同步中 ☁️';
   buildThemeGrid();renderCustomCats();
 }
 
 function setCurrency(cur){
-  appState.currency=cur;saveData();renderSettings();
+  appState.currency=cur;saveLocal();renderSettings();
   showToast(`已切換為${cur==='NTD'?'台幣 NT$':'日幣 ¥'} 💱`);
 }
 
@@ -959,13 +1277,13 @@ function toggleReminder(){
     if('Notification' in window){
       Notification.requestPermission().then(p=>{
         if(p==='granted'){
-          appState.reminderOn=true;saveData();renderSettings();
+          appState.reminderOn=true;saveLocal();renderSettings();
           scheduleReminder();showToast('提醒已開啟 🔔');
         }else{showToast('請允許通知權限 🔔');}
       });
     }else{showToast('您的瀏覽器不支援通知');}
   }else{
-    appState.reminderOn=false;saveData();renderSettings();
+    appState.reminderOn=false;saveLocal();renderSettings();
     if(reminderTimer) clearTimeout(reminderTimer);
     showToast('提醒已關閉');
   }
@@ -973,7 +1291,7 @@ function toggleReminder(){
 
 function saveReminderTime(){
   appState.reminderTime=document.getElementById('reminder-time').value;
-  saveData();scheduleReminder();showToast('提醒時間已更新 ✓');
+  saveLocal();scheduleReminder();showToast('提醒時間已更新 ✓');
 }
 
 function scheduleReminder(){
@@ -981,16 +1299,14 @@ function scheduleReminder(){
   if(reminderTimer) clearTimeout(reminderTimer);
   const[h,m]=appState.reminderTime.split(':').map(Number);
   const now=new Date();
-  const target=new Date();
-  target.setHours(h,m,0,0);
+  const target=new Date();target.setHours(h,m,0,0);
   if(target<=now) target.setDate(target.getDate()+1);
-  const ms=target-now;
   reminderTimer=setTimeout(()=>{
     if(Notification.permission==='granted'){
       new Notification('就是記帳 💰',{body:'記得今天的帳還沒記哦！',icon:'icon-192.png'});
     }
     scheduleReminder();
-  },ms);
+  },target-now);
 }
 
 function renderCustomCats(){
@@ -1014,7 +1330,7 @@ function renderCustomCats(){
 function deleteCustomSub(catId,subId){
   if(!appState.customSubs[catId]) return;
   appState.customSubs[catId]=appState.customSubs[catId].filter(s=>s.id!==subId);
-  saveData();renderSettings();showToast('已刪除 🗑️');
+  saveLocal();renderSettings();showToast('已刪除 🗑️');
 }
 
 function openAddCatModal(){
@@ -1056,7 +1372,7 @@ function saveCustomSubcat(){
   if(!name){showToast('請輸入名稱');return;}
   if(!appState.customSubs[catId]) appState.customSubs[catId]=[];
   appState.customSubs[catId].push({id:`custom_${Date.now()}`,name,icon:selectedEmoji});
-  saveData();
+  saveLocal();
   document.getElementById('add-cat-modal').classList.remove('show');
   document.getElementById('new-subcat-name').value='';
   showToast(`已新增「${name}」✨`);
@@ -1073,18 +1389,22 @@ function exportData(){
 }
 
 function clearAllData(){
-  if(confirm('確定要清除所有資料嗎？此操作無法復原！')){
-    appState.records=[];appState.customSubs={};
-    saveData();renderHome();showToast('已清除所有資料 🗑️');
-  }
+  if(!confirm('確定要清除所有資料嗎？此操作無法復原！')) return;
+  appState.records=[];saveLocal();renderHome();showToast('已清除所有資料 🗑️');
 }
 
-function init(){
-  loadData();
+/* ==========================================
+   初始化
+   ========================================== */
+async function init(){
+  loadLocal();
   applyTheme(appState.theme);
-  setAddCurrency(appState.currency);
-  if(appState.reminderOn) scheduleReminder();
-  renderHome();
+  if(appState.token||appState.isOffline){
+    if(appState.token){
+      await loadCloudRecords();
+    }
+    showApp();
+  }
 }
 
 document.addEventListener('DOMContentLoaded',()=>init());
