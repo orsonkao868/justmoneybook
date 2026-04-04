@@ -19,36 +19,11 @@
   --shadow:0 4px 20px rgba(255,107,157,0.15);
   --success:#34D399;--danger:#F87171;
 }
-[data-theme="ocean"]{
-  --primary:#3B82F6;--primary-light:#BFDBFE;--primary-dark:#1D4ED8;
-  --secondary:#06B6D4;--bg:#F0F9FF;--card:#FFFFFF;
-  --text:#1E3A5F;--text-sub:#64748B;--border:#BFDBFE;
-  --shadow:0 4px 20px rgba(59,130,246,0.15);
-}
-[data-theme="matcha"]{
-  --primary:#10B981;--primary-light:#A7F3D0;--primary-dark:#059669;
-  --secondary:#34D399;--bg:#F0FDF4;--card:#FFFFFF;
-  --text:#1A3D2B;--text-sub:#6B7280;--border:#A7F3D0;
-  --shadow:0 4px 20px rgba(16,185,129,0.15);
-}
-[data-theme="night"]{
-  --primary:#8B5CF6;--primary-light:#4C1D95;--primary-dark:#7C3AED;
-  --secondary:#6D28D9;--bg:#0F0A1E;--card:#1E1B2E;
-  --text:#E9D5FF;--text-sub:#A78BFA;--border:#4C1D95;
-  --shadow:0 4px 20px rgba(139,92,246,0.3);
-}
-[data-theme="orange"]{
-  --primary:#F59E0B;--primary-light:#FDE68A;--primary-dark:#D97706;
-  --secondary:#FB923C;--bg:#FFFBEB;--card:#FFFFFF;
-  --text:#3D1A00;--text-sub:#92400E;--border:#FDE68A;
-  --shadow:0 4px 20px rgba(245,158,11,0.15);
-}
-[data-theme="sakura"]{
-  --primary:#EC4899;--primary-light:#FBCFE8;--primary-dark:#BE185D;
-  --secondary:#F9A8D4;--bg:#FFF0F6;--card:#FFFFFF;
-  --text:#4A0020;--text-sub:#9D174D;--border:#FBCFE8;
-  --shadow:0 4px 20px rgba(236,72,153,0.15);
-}
+[data-theme="ocean"]{--primary:#3B82F6;--primary-light:#BFDBFE;--primary-dark:#1D4ED8;--secondary:#06B6D4;--bg:#F0F9FF;--card:#FFFFFF;--text:#1E3A5F;--text-sub:#64748B;--border:#BFDBFE;--shadow:0 4px 20px rgba(59,130,246,0.15);}
+[data-theme="matcha"]{--primary:#10B981;--primary-light:#A7F3D0;--primary-dark:#059669;--secondary:#34D399;--bg:#F0FDF4;--card:#FFFFFF;--text:#1A3D2B;--text-sub:#6B7280;--border:#A7F3D0;--shadow:0 4px 20px rgba(16,185,129,0.15);}
+[data-theme="night"]{--primary:#8B5CF6;--primary-light:#4C1D95;--primary-dark:#7C3AED;--secondary:#6D28D9;--bg:#0F0A1E;--card:#1E1B2E;--text:#E9D5FF;--text-sub:#A78BFA;--border:#4C1D95;--shadow:0 4px 20px rgba(139,92,246,0.3);}
+[data-theme="orange"]{--primary:#F59E0B;--primary-light:#FDE68A;--primary-dark:#D97706;--secondary:#FB923C;--bg:#FFFBEB;--card:#FFFFFF;--text:#3D1A00;--text-sub:#92400E;--border:#FDE68A;--shadow:0 4px 20px rgba(245,158,11,0.15);}
+[data-theme="sakura"]{--primary:#EC4899;--primary-light:#FBCFE8;--primary-dark:#BE185D;--secondary:#F9A8D4;--bg:#FFF0F6;--card:#FFFFFF;--text:#4A0020;--text-sub:#9D174D;--border:#FBCFE8;--shadow:0 4px 20px rgba(236,72,153,0.15);}
 body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px;overflow-x:hidden;transition:background 0.3s,color 0.3s}
 .nav-bar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:2px solid var(--border);display:flex;z-index:100;padding-bottom:env(safe-area-inset-bottom);transition:background 0.3s,border-color 0.3s}
 .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 0;cursor:pointer;transition:all 0.2s;color:var(--text-sub);font-size:11px;gap:3px}
@@ -107,12 +82,15 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
 .note-input:focus{border-color:var(--primary)}
 .summary-card{background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:24px;padding:20px;margin:12px 16px;color:white;position:relative;overflow:hidden}
 .summary-card::before{content:'💰';position:absolute;right:-10px;top:-10px;font-size:80px;opacity:0.15}
-.summary-date{font-size:13px;opacity:0.85;margin-bottom:4px}
 .summary-balance{font-size:36px;font-weight:bold;margin-bottom:12px}
 .summary-row{display:flex;gap:12px}
 .summary-item{flex:1;background:rgba(255,255,255,0.2);border-radius:14px;padding:10px;text-align:center}
 .summary-item-label{font-size:11px;opacity:0.85;margin-bottom:2px}
 .summary-item-val{font-size:18px;font-weight:bold}
+.date-nav{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;margin-bottom:4px}
+.date-nav-btn{background:none;border:none;font-size:26px;cursor:pointer;color:var(--primary);padding:4px 10px;border-radius:10px;transition:all 0.15s;line-height:1}
+.date-nav-btn:active{background:var(--border)}
+.date-nav-label{font-size:14px;font-weight:bold;color:var(--text)}
 .record-group{margin:0 16px 8px}
 .record-group-title{font-size:12px;color:var(--text-sub);font-weight:bold;margin-bottom:8px;padding:0 4px;display:flex;justify-content:space-between}
 .record-item{background:var(--card);border-radius:16px;padding:12px 14px;display:flex;align-items:center;gap:12px;margin-bottom:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border:1px solid var(--border);cursor:pointer;transition:all 0.2s}
@@ -127,7 +105,7 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
 .amount-expense{color:var(--danger)}
 .amount-income{color:var(--success)}
 .period-selector{display:flex;background:var(--bg);border-radius:14px;padding:4px;margin:12px 16px;transition:background 0.3s}
-.period-btn{flex:1;padding:8px;border-radius:10px;border:none;font-size:12px;font-weight:bold;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--text-sub)}
+.period-btn{flex:1;padding:8px;border-radius:10px;border:none;font-size:11px;font-weight:bold;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--text-sub)}
 .period-btn.active{background:var(--card);color:var(--primary);box-shadow:0 2px 8px rgba(0,0,0,0.1)}
 .chart-wrap{display:flex;justify-content:center;margin:8px 0}
 .legend-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
@@ -139,6 +117,13 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
 .stat-list-item:last-child{border-bottom:none}
 .stat-bar-bg{flex:1;background:var(--bg);border-radius:50px;height:8px;overflow:hidden}
 .stat-bar-fill{height:8px;border-radius:50px;transition:width 0.5s}
+.theme-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px}
+.theme-card{border-radius:16px;padding:12px 8px;text-align:center;cursor:pointer;border:3px solid var(--border);transition:all 0.2s;background:var(--bg)}
+.theme-card:active{transform:scale(0.95)}
+.theme-card.selected{border-color:var(--primary);background:var(--card)}
+.theme-preview{width:40px;height:40px;border-radius:50%;margin:0 auto 6px}
+.theme-name{font-size:11px;font-weight:bold;color:var(--text)}
+.theme-sub{font-size:10px;color:var(--text-sub);margin-top:2px}
 .setting-item{display:flex;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);cursor:pointer}
 .setting-item:last-child{border-bottom:none}
 .setting-icon{font-size:22px;width:36px;text-align:center;flex-shrink:0}
@@ -146,14 +131,19 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
 .setting-name{font-size:14px;font-weight:bold;color:var(--text)}
 .setting-desc{font-size:11px;color:var(--text-sub);margin-top:1px}
 .setting-arrow{color:var(--text-sub);font-size:16px}
-/* 主題色調選擇 */
-.theme-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px}
-.theme-card{border-radius:16px;padding:12px 8px;text-align:center;cursor:pointer;border:3px solid var(--border);transition:all 0.2s;background:var(--bg)}
-.theme-card:active{transform:scale(0.95)}
-.theme-card.selected{border-color:var(--primary);background:var(--card)}
-.theme-preview{width:40px;height:40px;border-radius:50%;margin:0 auto 6px;border:3px solid rgba(255,255,255,0.5)}
-.theme-name{font-size:11px;font-weight:bold;color:var(--text)}
-.theme-sub{font-size:10px;color:var(--text-sub);margin-top:2px}
+.toggle{width:44px;height:24px;background:var(--border);border-radius:12px;position:relative;cursor:pointer;transition:background 0.2s;flex-shrink:0}
+.toggle.on{background:var(--primary)}
+.toggle::after{content:'';width:20px;height:20px;background:white;border-radius:50%;position:absolute;top:2px;left:2px;transition:left 0.2s;box-shadow:0 2px 4px rgba(0,0,0,0.2)}
+.toggle.on::after{left:22px}
+.detail-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.detail-icon-big{width:60px;height:60px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;flex-shrink:0}
+.detail-amount-big{font-size:32px;font-weight:bold}
+.detail-row{display:flex;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)}
+.detail-row:last-child{border-bottom:none}
+.detail-label{font-size:13px;color:var(--text-sub);width:60px;flex-shrink:0}
+.detail-value{font-size:14px;color:var(--text);font-weight:bold;flex:1}
+.time-input{background:var(--bg);border:2px solid var(--border);border-radius:12px;padding:8px 14px;font-size:16px;color:var(--text);outline:none;font-family:inherit;transition:border-color 0.2s}
+.time-input:focus{border-color:var(--primary)}
 .empty-state{text-align:center;padding:40px 20px;color:var(--text-sub)}
 .empty-icon{font-size:60px;margin-bottom:12px}
 .empty-text{font-size:15px;font-weight:bold;margin-bottom:6px;color:var(--text)}
@@ -164,56 +154,42 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
 </style>
 </head>
 <body>
-
 <div class="toast" id="toast"></div>
-
 <nav class="nav-bar">
-  <div class="nav-item active" onclick="switchTab('home')" id="nav-home">
-    <div class="nav-icon">🏠</div><div>首頁</div>
-  </div>
-  <div class="nav-item" onclick="switchTab('records')" id="nav-records">
-    <div class="nav-icon">📋</div><div>記錄</div>
-  </div>
-  <div class="nav-item" onclick="switchTab('stats')" id="nav-stats">
-    <div class="nav-icon">📊</div><div>統計</div>
-  </div>
-  <div class="nav-item" onclick="switchTab('settings')" id="nav-settings">
-    <div class="nav-icon">⚙️</div><div>設定</div>
-  </div>
+  <div class="nav-item active" onclick="switchTab('home')" id="nav-home"><div class="nav-icon">🏠</div><div>首頁</div></div>
+  <div class="nav-item" onclick="switchTab('records')" id="nav-records"><div class="nav-icon">📋</div><div>記錄</div></div>
+  <div class="nav-item" onclick="switchTab('stats')" id="nav-stats"><div class="nav-icon">📊</div><div>統計</div></div>
+  <div class="nav-item" onclick="switchTab('settings')" id="nav-settings"><div class="nav-icon">⚙️</div><div>設定</div></div>
 </nav>
-
 <button class="add-btn-float" onclick="openAddModal()">＋</button>
 
+<!-- 首頁 -->
 <div id="screen-home" class="screen active">
   <div class="page-header">
     <div class="page-title">就是記帳 💰</div>
     <div class="page-sub" id="home-date"></div>
   </div>
   <div class="summary-card">
-    <div class="summary-date">本月收支總覽</div>
+    <div style="font-size:13px;opacity:0.85;margin-bottom:4px">本月收支總覽</div>
     <div class="summary-balance" id="summary-balance">NT$ 0</div>
     <div class="summary-row">
-      <div class="summary-item">
-        <div class="summary-item-label">💸 支出</div>
-        <div class="summary-item-val" id="summary-expense">0</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-item-label">💵 收入</div>
-        <div class="summary-item-val" id="summary-income">0</div>
-      </div>
+      <div class="summary-item"><div class="summary-item-label">💸 支出</div><div class="summary-item-val" id="summary-expense">0</div></div>
+      <div class="summary-item"><div class="summary-item-label">💵 收入</div><div class="summary-item-val" id="summary-income">0</div></div>
     </div>
   </div>
-  <div style="padding:0 16px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
-    <div style="font-size:14px;font-weight:bold;color:var(--text)">今日記錄</div>
-    <div style="font-size:12px;color:var(--primary);cursor:pointer" onclick="switchTab('records')">查看全部 →</div>
+  <div class="date-nav">
+    <button class="date-nav-btn" onclick="changeHomeDate(-1)">‹</button>
+    <div class="date-nav-label" id="home-date-label">今天</div>
+    <button class="date-nav-btn" onclick="changeHomeDate(1)">›</button>
   </div>
   <div id="home-records"></div>
 </div>
 
+<!-- 記錄頁 -->
 <div id="screen-records" class="screen">
   <div class="page-header">
     <div class="page-title">所有記錄 📋</div>
-    <div class="page-sub">點擊記錄可以刪除</div>
+    <div class="page-sub">點擊記錄查看詳情</div>
   </div>
   <div style="padding:12px 16px;display:flex;gap:8px">
     <button class="btn btn-sm btn-primary" id="filter-all" onclick="filterRecords('all')">全部</button>
@@ -223,6 +199,7 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
   <div id="records-list"></div>
 </div>
 
+<!-- 統計頁 -->
 <div id="screen-stats" class="screen">
   <div class="page-header">
     <div class="page-title">消費統計 📊</div>
@@ -242,9 +219,7 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
   </div>
   <div class="card">
     <div class="card-title">💸 支出分布</div>
-    <div class="chart-wrap">
-      <canvas id="pie-chart" width="200" height="200" style="max-width:200px;max-height:200px"></canvas>
-    </div>
+    <div class="chart-wrap"><canvas id="pie-chart" width="200" height="200" style="max-width:200px;max-height:200px"></canvas></div>
     <div class="legend-grid" id="chart-legend"></div>
   </div>
   <div class="card">
@@ -253,14 +228,8 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
   </div>
   <div class="card">
     <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-      <div>
-        <div style="font-size:12px;color:var(--text-sub)">總支出</div>
-        <div style="font-size:20px;font-weight:bold;color:var(--danger)" id="stat-total-expense">NT$ 0</div>
-      </div>
-      <div style="text-align:right">
-        <div style="font-size:12px;color:var(--text-sub)">總收入</div>
-        <div style="font-size:20px;font-weight:bold;color:var(--success)" id="stat-total-income">NT$ 0</div>
-      </div>
+      <div><div style="font-size:12px;color:var(--text-sub)">總支出</div><div style="font-size:20px;font-weight:bold;color:var(--danger)" id="stat-total-expense">NT$ 0</div></div>
+      <div style="text-align:right"><div style="font-size:12px;color:var(--text-sub)">總收入</div><div style="font-size:20px;font-weight:bold;color:var(--success)" id="stat-total-income">NT$ 0</div></div>
     </div>
     <div style="border-top:1px solid var(--border);padding-top:8px;display:flex;justify-content:space-between;align-items:center">
       <div style="font-size:13px;color:var(--text-sub)">結餘</div>
@@ -269,6 +238,7 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
   </div>
 </div>
 
+<!-- 設定頁 -->
 <div id="screen-settings" class="screen">
   <div class="page-header">
     <div class="page-title">設定 ⚙️</div>
@@ -286,6 +256,19 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
     </div>
   </div>
   <div class="card">
+    <div class="card-title">🔔 每日提醒</div>
+    <div class="setting-item" style="cursor:default">
+      <div class="setting-icon">🔔</div>
+      <div class="setting-info"><div class="setting-name">開啟提醒</div><div class="setting-desc">每天提醒你記帳</div></div>
+      <div class="toggle" id="reminder-toggle" onclick="toggleReminder()"></div>
+    </div>
+    <div id="reminder-time-row" class="setting-item hidden" style="cursor:default">
+      <div class="setting-icon">🕐</div>
+      <div class="setting-info"><div class="setting-name">提醒時間</div></div>
+      <input type="time" id="reminder-time" class="time-input" value="21:00" onchange="saveReminderTime()">
+    </div>
+  </div>
+  <div class="card">
     <div class="card-title">🗂️ 自訂類別</div>
     <div id="custom-cats-list"></div>
     <button class="btn btn-outline btn-full" style="margin-top:8px" onclick="openAddCatModal()">＋ 新增自訂細項</button>
@@ -294,26 +277,19 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
     <div class="card-title">🗃️ 資料管理</div>
     <div class="setting-item" onclick="exportData()">
       <div class="setting-icon">📤</div>
-      <div class="setting-info">
-        <div class="setting-name">匯出資料</div>
-        <div class="setting-desc">下載所有記帳記錄</div>
-      </div>
+      <div class="setting-info"><div class="setting-name">匯出資料</div><div class="setting-desc">下載所有記帳記錄</div></div>
       <div class="setting-arrow">›</div>
     </div>
     <div class="setting-item" onclick="clearAllData()">
       <div class="setting-icon">🗑️</div>
-      <div class="setting-info">
-        <div class="setting-name">清除所有資料</div>
-        <div class="setting-desc">刪除全部記錄（無法復原）</div>
-      </div>
+      <div class="setting-info"><div class="setting-name">清除所有資料</div><div class="setting-desc">刪除全部記錄（無法復原）</div></div>
       <div class="setting-arrow">›</div>
     </div>
   </div>
-  <div style="text-align:center;padding:20px;color:var(--text-sub);font-size:12px">
-    就是記帳 v1.1 💕<br>資料儲存在您的裝置上
-  </div>
+  <div style="text-align:center;padding:20px;color:var(--text-sub);font-size:12px">就是記帳 v2.0 💕<br>資料儲存在您的裝置上</div>
 </div>
 
+<!-- 新增記帳 Modal -->
 <div class="modal-overlay" id="add-modal" onclick="handleModalClick(event,'add-modal')">
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="modal-handle"></div>
@@ -327,24 +303,13 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
         <button class="currency-btn active" id="add-curr-ntd" onclick="setAddCurrency('NTD')">NT$</button>
         <button class="currency-btn" id="add-curr-jpy" onclick="setAddCurrency('JPY')">¥</button>
       </div>
-      <div class="amount-number">
-        <span class="amount-currency" id="add-curr-symbol">NT$</span>
-        <span id="add-amount-display">0</span>
-      </div>
+      <div class="amount-number"><span class="amount-currency" id="add-curr-symbol">NT$</span><span id="add-amount-display">0</span></div>
     </div>
     <div class="numpad">
-      <button class="numpad-key" onclick="numpadPress('7')">7</button>
-      <button class="numpad-key" onclick="numpadPress('8')">8</button>
-      <button class="numpad-key" onclick="numpadPress('9')">9</button>
-      <button class="numpad-key" onclick="numpadPress('4')">4</button>
-      <button class="numpad-key" onclick="numpadPress('5')">5</button>
-      <button class="numpad-key" onclick="numpadPress('6')">6</button>
-      <button class="numpad-key" onclick="numpadPress('1')">1</button>
-      <button class="numpad-key" onclick="numpadPress('2')">2</button>
-      <button class="numpad-key" onclick="numpadPress('3')">3</button>
-      <button class="numpad-key" onclick="numpadPress('.')">.</button>
-      <button class="numpad-key" onclick="numpadPress('0')">0</button>
-      <button class="numpad-key del" onclick="numpadPress('del')">⌫</button>
+      <button class="numpad-key" onclick="numpadPress('7')">7</button><button class="numpad-key" onclick="numpadPress('8')">8</button><button class="numpad-key" onclick="numpadPress('9')">9</button>
+      <button class="numpad-key" onclick="numpadPress('4')">4</button><button class="numpad-key" onclick="numpadPress('5')">5</button><button class="numpad-key" onclick="numpadPress('6')">6</button>
+      <button class="numpad-key" onclick="numpadPress('1')">1</button><button class="numpad-key" onclick="numpadPress('2')">2</button><button class="numpad-key" onclick="numpadPress('3')">3</button>
+      <button class="numpad-key" onclick="numpadPress('.')">.</button><button class="numpad-key" onclick="numpadPress('0')">0</button><button class="numpad-key del" onclick="numpadPress('del')">⌫</button>
     </div>
     <div class="category-tabs" id="add-cat-tabs"></div>
     <div class="subcategory-grid" id="add-subcat-grid"></div>
@@ -353,6 +318,59 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
   </div>
 </div>
 
+<!-- 詳細/編輯 Modal -->
+<div class="modal-overlay" id="detail-modal" onclick="handleModalClick(event,'detail-modal')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-handle"></div>
+    <div id="detail-view">
+      <div class="detail-header">
+        <div class="detail-icon-big" id="detail-icon"></div>
+        <div>
+          <div style="font-size:13px;color:var(--text-sub)" id="detail-cat-name"></div>
+          <div class="detail-amount-big" id="detail-amount"></div>
+        </div>
+      </div>
+      <div class="detail-row"><div class="detail-label">日期</div><div class="detail-value" id="detail-date"></div></div>
+      <div class="detail-row"><div class="detail-label">時間</div><div class="detail-value" id="detail-time"></div></div>
+      <div class="detail-row"><div class="detail-label">類型</div><div class="detail-value" id="detail-type"></div></div>
+      <div class="detail-row"><div class="detail-label">貨幣</div><div class="detail-value" id="detail-currency"></div></div>
+      <div class="detail-row" id="detail-note-row"><div class="detail-label">備註</div><div class="detail-value" id="detail-note-val"></div></div>
+      <div style="display:flex;gap:8px;margin-top:16px">
+        <button class="btn btn-outline btn-full" onclick="openEditMode()">✏️ 編輯</button>
+        <button class="btn btn-danger btn-full" onclick="deleteCurrentRecord()">🗑️ 刪除</button>
+      </div>
+    </div>
+    <div id="edit-view" class="hidden">
+      <div class="modal-title">編輯記錄 ✏️</div>
+      <div class="type-switch">
+        <button class="type-btn active" id="edit-type-expense" onclick="setEditType('expense')">💸 支出</button>
+        <button class="type-btn" id="edit-type-income" onclick="setEditType('income')">💵 收入</button>
+      </div>
+      <div class="amount-display">
+        <div class="currency-switch">
+          <button class="currency-btn active" id="edit-curr-ntd" onclick="setEditCurrency('NTD')">NT$</button>
+          <button class="currency-btn" id="edit-curr-jpy" onclick="setEditCurrency('JPY')">¥</button>
+        </div>
+        <div class="amount-number"><span class="amount-currency" id="edit-curr-symbol">NT$</span><span id="edit-amount-display">0</span></div>
+      </div>
+      <div class="numpad">
+        <button class="numpad-key" onclick="editNumpadPress('7')">7</button><button class="numpad-key" onclick="editNumpadPress('8')">8</button><button class="numpad-key" onclick="editNumpadPress('9')">9</button>
+        <button class="numpad-key" onclick="editNumpadPress('4')">4</button><button class="numpad-key" onclick="editNumpadPress('5')">5</button><button class="numpad-key" onclick="editNumpadPress('6')">6</button>
+        <button class="numpad-key" onclick="editNumpadPress('1')">1</button><button class="numpad-key" onclick="editNumpadPress('2')">2</button><button class="numpad-key" onclick="editNumpadPress('3')">3</button>
+        <button class="numpad-key" onclick="editNumpadPress('.')">.</button><button class="numpad-key" onclick="editNumpadPress('0')">0</button><button class="numpad-key del" onclick="editNumpadPress('del')">⌫</button>
+      </div>
+      <div class="category-tabs" id="edit-cat-tabs"></div>
+      <div class="subcategory-grid" id="edit-subcat-grid"></div>
+      <textarea class="note-input" id="edit-note" placeholder="備註（選填）✏️" rows="2"></textarea>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button class="btn btn-gray btn-full" onclick="closeEditMode()">取消</button>
+        <button class="btn btn-primary btn-full" onclick="saveEdit()">儲存 ✓</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 新增自訂類別 Modal -->
 <div class="modal-overlay" id="add-cat-modal" onclick="handleModalClick(event,'add-cat-modal')">
   <div class="modal-box" onclick="event.stopPropagation()" style="max-height:70vh">
     <div class="modal-handle"></div>
@@ -387,47 +405,39 @@ const THEMES=[
 const CATEGORIES={
   expense:[
     {id:'food',name:'飲食',icon:'🍱',color:'#FF6B9D',subs:[
-      {id:'breakfast',name:'早餐',icon:'🍳'},{id:'lunch',name:'午餐',icon:'🍱'},
-      {id:'dinner',name:'晚餐',icon:'🍜'},{id:'drink',name:'飲料',icon:'🧃'},
-      {id:'coffee',name:'咖啡',icon:'☕'},{id:'bubble',name:'珍奶',icon:'🧋'},
-      {id:'snack',name:'宵夜',icon:'🌙'},{id:'gather',name:'聚餐',icon:'🥂'},
-      {id:'cvs',name:'便利商店',icon:'🏪'}]},
+      {id:'breakfast',name:'早餐',icon:'🍳'},{id:'lunch',name:'午餐',icon:'🍱'},{id:'dinner',name:'晚餐',icon:'🍜'},
+      {id:'drink',name:'飲料',icon:'🧃'},{id:'coffee',name:'咖啡',icon:'☕'},{id:'bubble',name:'珍奶',icon:'🧋'},
+      {id:'snack',name:'宵夜',icon:'🌙'},{id:'gather',name:'聚餐',icon:'🥂'},{id:'cvs',name:'便利商店',icon:'🏪'}]},
     {id:'transport',name:'交通',icon:'🚇',color:'#60A5FA',subs:[
-      {id:'mrt',name:'捷運',icon:'🚇'},{id:'bus',name:'公車',icon:'🚌'},
-      {id:'taxi',name:'計程車',icon:'🚕'},{id:'uber',name:'Uber',icon:'🚗'},
-      {id:'gas',name:'油錢',icon:'⛽'},{id:'parking',name:'停車',icon:'🅿️'}]},
+      {id:'mrt',name:'捷運',icon:'🚇'},{id:'bus',name:'公車',icon:'🚌'},{id:'taxi',name:'計程車',icon:'🚕'},
+      {id:'uber',name:'Uber',icon:'🚗'},{id:'gas',name:'油錢',icon:'⛽'},{id:'parking',name:'停車',icon:'🅿️'}]},
     {id:'shopping',name:'購物',icon:'🛍️',color:'#C084FC',subs:[
-      {id:'supermarket',name:'超市',icon:'🛒'},{id:'online',name:'網購',icon:'📦'},
-      {id:'clothes',name:'服飾',icon:'👔'},{id:'tech',name:'3C',icon:'💻'},
-      {id:'daily',name:'日用品',icon:'🧴'},{id:'cosmetic',name:'藥妝',icon:'💄'}]},
+      {id:'supermarket',name:'超市',icon:'🛒'},{id:'online',name:'網購',icon:'📦'},{id:'clothes',name:'服飾',icon:'👔'},
+      {id:'tech',name:'3C',icon:'💻'},{id:'daily',name:'日用品',icon:'🧴'},{id:'cosmetic',name:'藥妝',icon:'💄'}]},
     {id:'entertainment',name:'娛樂',icon:'🎮',color:'#F59E0B',subs:[
-      {id:'movie',name:'電影',icon:'🎬'},{id:'game',name:'遊戲',icon:'🎮'},
-      {id:'subscribe',name:'訂閱',icon:'📱'},{id:'travel',name:'旅遊',icon:'✈️'},
-      {id:'karaoke',name:'唱歌',icon:'🎤'},{id:'concert',name:'演唱會',icon:'🎵'},
-      {id:'exhibit',name:'展覽',icon:'🎨'},{id:'boardgame',name:'桌遊',icon:'🎲'},
-      {id:'toy',name:'玩具',icon:'🧸'},{id:'model',name:'模型',icon:'🤖'}]},
+      {id:'movie',name:'電影',icon:'🎬'},{id:'game',name:'遊戲',icon:'🎮'},{id:'subscribe',name:'訂閱',icon:'📱'},
+      {id:'travel',name:'旅遊',icon:'✈️'},{id:'karaoke',name:'唱歌',icon:'🎤'},{id:'concert',name:'演唱會',icon:'🎵'},
+      {id:'exhibit',name:'展覽',icon:'🎨'},{id:'boardgame',name:'桌遊',icon:'🎲'},{id:'toy',name:'玩具',icon:'🧸'},
+      {id:'model',name:'模型',icon:'🤖'}]},
     {id:'sport',name:'運動',icon:'💪',color:'#34D399',subs:[
       {id:'gym',name:'健身房',icon:'🏋️'},{id:'equipment',name:'運動器材',icon:'⚽'},
-      {id:'ball',name:'球類運動',icon:'🏀'},{id:'swim',name:'游泳',icon:'🏊'},
-      {id:'outdoor',name:'戶外活動',icon:'🏕️'}]},
+      {id:'ball',name:'球類運動',icon:'🏀'},{id:'swim',name:'游泳',icon:'🏊'},{id:'outdoor',name:'戶外活動',icon:'🏕️'}]},
     {id:'life',name:'生活',icon:'🏠',color:'#FB923C',subs:[
-      {id:'rent',name:'房租',icon:'🏠'},{id:'utility',name:'水電',icon:'💡'},
-      {id:'phone',name:'電話費',icon:'📞'},{id:'internet',name:'網路費',icon:'📶'},
-      {id:'medical',name:'醫療',icon:'🏥'},{id:'beauty',name:'美容',icon:'💅'},
+      {id:'rent',name:'房租',icon:'🏠'},{id:'utility',name:'水電',icon:'💡'},{id:'phone',name:'電話費',icon:'📞'},
+      {id:'internet',name:'網路費',icon:'📶'},{id:'medical',name:'醫療',icon:'🏥'},{id:'beauty',name:'美容',icon:'💅'},
       {id:'pet',name:'寵物',icon:'🐱'}]},
     {id:'invest',name:'投資',icon:'📈',color:'#6EE7B7',subs:[
-      {id:'stock',name:'股票',icon:'📈'},{id:'etf',name:'ETF',icon:'📊'},
-      {id:'fund',name:'基金',icon:'💹'},{id:'crypto',name:'加密貨幣',icon:'🪙'},
-      {id:'realestate',name:'房地產',icon:'🏢'},{id:'deposit',name:'定存',icon:'🏦'},
-      {id:'otherinvest',name:'其他投資',icon:'💰'}]}
+      {id:'stock',name:'股票',icon:'📈'},{id:'etf',name:'ETF',icon:'📊'},{id:'fund',name:'基金',icon:'💹'},
+      {id:'crypto',name:'加密貨幣',icon:'🪙'},{id:'realestate',name:'房地產',icon:'🏢'},
+      {id:'deposit',name:'定存',icon:'🏦'},{id:'otherinvest',name:'其他投資',icon:'💰'}]}
   ],
   income:[
     {id:'income_main',name:'收入',icon:'💵',color:'#34D399',subs:[
-      {id:'salary',name:'薪水',icon:'💰'},{id:'bonus',name:'獎金',icon:'🎁'},
-      {id:'sidejob',name:'副業',icon:'💼'},{id:'stock_profit',name:'股票獲利',icon:'📈'},
-      {id:'etf_profit',name:'ETF獲利',icon:'📊'},{id:'fund_profit',name:'基金獲利',icon:'💹'},
-      {id:'crypto_profit',name:'幣圈獲利',icon:'🪙'},{id:'dividend',name:'股息',icon:'💸'},
-      {id:'rental',name:'租金收入',icon:'🏢'},{id:'otherincome',name:'其他收入',icon:'✨'}]}
+      {id:'salary',name:'薪水',icon:'💰'},{id:'bonus',name:'獎金',icon:'🎁'},{id:'sidejob',name:'副業',icon:'💼'},
+      {id:'stock_profit',name:'股票獲利',icon:'📈'},{id:'etf_profit',name:'ETF獲利',icon:'📊'},
+      {id:'fund_profit',name:'基金獲利',icon:'💹'},{id:'crypto_profit',name:'幣圈獲利',icon:'🪙'},
+      {id:'dividend',name:'股息',icon:'💸'},{id:'rental',name:'租金收入',icon:'🏢'},
+      {id:'otherincome',name:'其他收入',icon:'✨'}]}
   ]
 };
 
@@ -436,16 +446,22 @@ const EMOJI_OPTIONS=['🍕','🍔','🍣','🧁','🥗','🍺','🎸','🎯','�
 
 let appState={
   records:[],currency:'NTD',customSubs:{},theme:'pink',
+  reminderOn:false,reminderTime:'21:00',
   currentTab:'home',addType:'expense',addCurrency:'NTD',
   addAmount:'',addCategory:'',addSubcat:'',
-  statPeriod:'month',statFrom:null,statTo:null,filterType:'all'
+  editId:null,editType:'expense',editCurrency:'NTD',editAmount:'',editCategory:'',editSubcat:'',
+  statPeriod:'month',statFrom:null,statTo:null,filterType:'all',
+  homeDate:new Date()
 };
+
+let reminderTimer=null;
 
 function saveData(){
   try{
     localStorage.setItem('moneybook_v1',JSON.stringify({
       records:appState.records,currency:appState.currency,
-      customSubs:appState.customSubs,theme:appState.theme
+      customSubs:appState.customSubs,theme:appState.theme,
+      reminderOn:appState.reminderOn,reminderTime:appState.reminderTime
     }));
   }catch(e){}
 }
@@ -459,6 +475,8 @@ function loadData(){
     appState.currency=d.currency||'NTD';
     appState.customSubs=d.customSubs||{};
     appState.theme=d.theme||'pink';
+    appState.reminderOn=d.reminderOn||false;
+    appState.reminderTime=d.reminderTime||'21:00';
   }catch(e){}
 }
 
@@ -482,11 +500,7 @@ function buildThemeGrid(){
 }
 
 function selectTheme(id){
-  appState.theme=id;
-  applyTheme(id);
-  saveData();
-  buildThemeGrid();
-  showToast('主題已切換 🎨');
+  applyTheme(id);saveData();buildThemeGrid();showToast('主題已切換 🎨');
 }
 
 function formatAmount(amount,currency){
@@ -495,12 +509,11 @@ function formatAmount(amount,currency){
   return`NT$${parseFloat(amount).toLocaleString('zh-TW',{minimumFractionDigits:0,maximumFractionDigits:0})}`;
 }
 
-function formatDate(dateStr){
-  const d=new Date(dateStr);
+function formatDateLabel(date){
   const now=new Date();
-  if(d.toDateString()===now.toDateString()) return'今天';
-  if(d.toDateString()===new Date(now-86400000).toDateString()) return'昨天';
-  return`${d.getMonth()+1}/${d.getDate()}`;
+  if(date.toDateString()===now.toDateString()) return'今天';
+  if(date.toDateString()===new Date(now-86400000).toDateString()) return'昨天';
+  return`${date.getMonth()+1}月${date.getDate()}日`;
 }
 
 function formatTime(dateStr){
@@ -538,10 +551,22 @@ function switchTab(tab){
   if(tab==='settings') renderSettings();
 }
 
+function changeHomeDate(dir){
+  const d=new Date(appState.homeDate);
+  d.setDate(d.getDate()+dir);
+  const now=new Date();
+  if(d>now) return;
+  appState.homeDate=d;
+  renderHome();
+}
+
 function renderHome(){
   const now=new Date();
+  const hd=appState.homeDate;
   document.getElementById('home-date').textContent=
     `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日`;
+  document.getElementById('home-date-label').textContent=formatDateLabel(hd);
+
   const monthStart=new Date(now.getFullYear(),now.getMonth(),1);
   const monthRecords=appState.records.filter(r=>{const d=new Date(r.date);return d>=monthStart&&d<=now;});
   const expense=monthRecords.filter(r=>r.type==='expense').reduce((s,r)=>s+r.amount,0);
@@ -550,15 +575,16 @@ function renderHome(){
   document.getElementById('summary-balance').textContent=(balance>=0?'+':'')+formatAmount(balance);
   document.getElementById('summary-expense').textContent=formatAmount(expense);
   document.getElementById('summary-income').textContent=formatAmount(income);
-  const todayStr=getDateStr(now);
-  const todayRecords=appState.records.filter(r=>r.date.startsWith(todayStr))
+
+  const dateStr=getDateStr(hd);
+  const dayRecords=appState.records.filter(r=>r.date.startsWith(dateStr))
     .sort((a,b)=>new Date(b.date)-new Date(a.date));
   const container=document.getElementById('home-records');
-  if(todayRecords.length===0){
-    container.innerHTML=`<div class="empty-state"><div class="empty-icon">🌸</div><div class="empty-text">今天還沒有記錄</div><div class="empty-sub">點右下角 ＋ 開始記帳吧！</div></div>`;
+  if(dayRecords.length===0){
+    container.innerHTML=`<div class="empty-state"><div class="empty-icon">🌸</div><div class="empty-text">${formatDateLabel(hd)}還沒有記錄</div><div class="empty-sub">點右下角 ＋ 開始記帳吧！</div></div>`;
     return;
   }
-  container.innerHTML=todayRecords.slice(0,5).map(r=>recordItemHTML(r)).join('');
+  container.innerHTML=dayRecords.map(r=>recordItemHTML(r,true)).join('');
 }
 
 function renderRecords(){
@@ -573,10 +599,10 @@ function renderRecords(){
   }
   container.innerHTML=Object.entries(groups).map(([date,records])=>{
     const dayExp=records.filter(r=>r.type==='expense').reduce((s,r)=>s+r.amount,0);
-    const d=new Date(date);
+    const d=new Date(date+'T00:00:00');
     return`<div class="record-group">
       <div class="record-group-title">
-        <span>${formatDate(date+'T00:00:00')} ${d.getMonth()+1}月${d.getDate()}日</span>
+        <span>${formatDateLabel(d)} ${d.getMonth()+1}月${d.getDate()}日</span>
         <span style="color:var(--danger)">-${formatAmount(dayExp)}</span>
       </div>
       ${records.map(r=>recordItemHTML(r,true)).join('')}
@@ -584,10 +610,10 @@ function renderRecords(){
   }).join('');
 }
 
-function recordItemHTML(r,showDelete=false){
+function recordItemHTML(r,clickable=false){
   const info=getCatInfo(r.type,r.cat,r.subcat);
   const isExpense=r.type==='expense';
-  return`<div class="record-item" onclick="${showDelete?`confirmDelete('${r.id}')`:''}" >
+  return`<div class="record-item" ${clickable?`onclick="openDetail('${r.id}')"`:''}>
     <div class="record-icon-wrap" style="background:${info.color}22"><span>${info.icon}</span></div>
     <div class="record-info">
       <div class="record-cat">${info.name}</div>
@@ -604,17 +630,136 @@ function filterRecords(type){
   appState.filterType=type;
   ['all','expense','income'].forEach(t=>{
     const btn=document.getElementById(`filter-${t}`);
-    if(t===type){btn.className='btn btn-sm btn-primary';}
-    else{btn.className='btn btn-sm btn-outline';}
+    btn.className=t===type?'btn btn-sm btn-primary':'btn btn-sm btn-outline';
   });
   renderRecords();
 }
 
-function confirmDelete(id){
-  if(confirm('確定要刪除這筆記錄嗎？')){
-    appState.records=appState.records.filter(r=>r.id!==id);
-    saveData();renderRecords();showToast('已刪除 🗑️');
-  }
+function openDetail(id){
+  const r=appState.records.find(r=>r.id===id);
+  if(!r) return;
+  appState.editId=id;
+  const info=getCatInfo(r.type,r.cat,r.subcat);
+  const isExpense=r.type==='expense';
+  const d=new Date(r.date);
+  document.getElementById('detail-icon').textContent=info.icon;
+  document.getElementById('detail-icon').style.background=`${info.color}22`;
+  document.getElementById('detail-cat-name').textContent=info.name;
+  document.getElementById('detail-amount').textContent=(isExpense?'-':'+')+formatAmount(r.amount,r.currency);
+  document.getElementById('detail-amount').style.color=isExpense?'var(--danger)':'var(--success)';
+  document.getElementById('detail-date').textContent=`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+  document.getElementById('detail-time').textContent=formatTime(r.date);
+  document.getElementById('detail-type').textContent=isExpense?'💸 支出':'💵 收入';
+  document.getElementById('detail-currency').textContent=r.currency==='JPY'?'🇯🇵 日幣 ¥':'🇹🇼 台幣 NT$';
+  const noteRow=document.getElementById('detail-note-row');
+  const noteVal=document.getElementById('detail-note-val');
+  if(r.note){noteRow.classList.remove('hidden');noteVal.textContent=r.note;}
+  else noteRow.classList.add('hidden');
+  document.getElementById('detail-view').classList.remove('hidden');
+  document.getElementById('edit-view').classList.add('hidden');
+  document.getElementById('detail-modal').classList.add('show');
+}
+
+function openEditMode(){
+  const r=appState.records.find(r=>r.id===appState.editId);
+  if(!r) return;
+  appState.editType=r.type;
+  appState.editCurrency=r.currency;
+  appState.editAmount=String(r.amount);
+  appState.editCategory=r.cat;
+  appState.editSubcat=r.subcat;
+  setEditType(r.type);
+  setEditCurrency(r.currency);
+  document.getElementById('edit-amount-display').textContent=String(r.amount);
+  document.getElementById('edit-note').value=r.note||'';
+  document.getElementById('detail-view').classList.add('hidden');
+  document.getElementById('edit-view').classList.remove('hidden');
+  buildEditCatTabs();
+}
+
+function closeEditMode(){
+  document.getElementById('detail-view').classList.remove('hidden');
+  document.getElementById('edit-view').classList.add('hidden');
+}
+
+function setEditType(type){
+  appState.editType=type;
+  ['expense','income'].forEach(t=>document.getElementById(`edit-type-${t}`).classList.toggle('active',t===type));
+  buildEditCatTabs();
+}
+
+function setEditCurrency(cur){
+  appState.editCurrency=cur;
+  ['NTD','JPY'].forEach(c=>document.getElementById(`edit-curr-${c.toLowerCase()}`).classList.toggle('active',c===cur));
+  document.getElementById('edit-curr-symbol').textContent=cur==='JPY'?'¥':'NT$';
+}
+
+function editNumpadPress(key){
+  let amt=appState.editAmount;
+  if(key==='del') amt=amt.slice(0,-1);
+  else if(key==='.'){if(!amt.includes('.')) amt+='.';}
+  else{if(!amt||amt==='0') amt=key;else if(amt.includes('.')&&amt.split('.')[1].length>=2) return;else amt+=key;}
+  appState.editAmount=amt;
+  document.getElementById('edit-amount-display').textContent=amt||'0';
+}
+
+function buildEditCatTabs(){
+  const cats=appState.editType==='expense'?CATEGORIES.expense:CATEGORIES.income;
+  document.getElementById('edit-cat-tabs').innerHTML=cats.map(c=>`
+    <div class="cat-tab ${appState.editCategory===c.id?'active':''}"
+      style="${appState.editCategory===c.id?`background:${c.color}`:''}"
+      onclick="selectEditCat('${c.id}')">${c.icon} ${c.name}</div>`).join('');
+  if(appState.editCategory) buildEditSubcatGrid();
+  else document.getElementById('edit-subcat-grid').innerHTML='';
+}
+
+function selectEditCat(catId){
+  appState.editCategory=catId;appState.editSubcat='';
+  buildEditCatTabs();buildEditSubcatGrid();
+}
+
+function buildEditSubcatGrid(){
+  const cats=appState.editType==='expense'?CATEGORIES.expense:CATEGORIES.income;
+  const cat=cats.find(c=>c.id===appState.editCategory);
+  if(!cat) return;
+  const customs=appState.customSubs[appState.editCategory]||[];
+  const allSubs=[...cat.subs,...customs];
+  document.getElementById('edit-subcat-grid').innerHTML=allSubs.map(s=>`
+    <div class="subcat-item ${appState.editSubcat===s.id?'selected':''}" onclick="selectEditSubcat('${s.id}')">
+      <div class="subcat-icon">${s.icon}</div>
+      <div class="subcat-name">${s.name}</div>
+    </div>`).join('');
+}
+
+function selectEditSubcat(id){appState.editSubcat=id;buildEditSubcatGrid();}
+
+function saveEdit(){
+  const amount=parseFloat(appState.editAmount);
+  if(!amount||amount<=0){showToast('請輸入金額 💰');return;}
+  if(!appState.editCategory){showToast('請選擇類別 📂');return;}
+  const idx=appState.records.findIndex(r=>r.id===appState.editId);
+  if(idx===-1) return;
+  appState.records[idx]={
+    ...appState.records[idx],
+    type:appState.editType,currency:appState.editCurrency,amount,
+    cat:appState.editCategory,subcat:appState.editSubcat,
+    note:document.getElementById('edit-note').value.trim()
+  };
+  saveData();
+  document.getElementById('detail-modal').classList.remove('show');
+  showToast('已儲存 ✓');
+  if(appState.currentTab==='home') renderHome();
+  if(appState.currentTab==='records') renderRecords();
+}
+
+function deleteCurrentRecord(){
+  if(!confirm('確定要刪除這筆記錄嗎？')) return;
+  appState.records=appState.records.filter(r=>r.id!==appState.editId);
+  saveData();
+  document.getElementById('detail-modal').classList.remove('show');
+  showToast('已刪除 🗑️');
+  if(appState.currentTab==='home') renderHome();
+  if(appState.currentTab==='records') renderRecords();
 }
 
 function openAddModal(){
@@ -645,7 +790,7 @@ function numpadPress(key){
   let amt=appState.addAmount;
   if(key==='del') amt=amt.slice(0,-1);
   else if(key==='.'){if(!amt.includes('.')) amt+='.';}
-  else{if(amt==='0') amt=key;else if(amt.includes('.')&&amt.split('.')[1].length>=2) return;else amt+=key;}
+  else{if(!amt||amt==='0') amt=key;else if(amt.includes('.')&&amt.split('.')[1].length>=2) return;else amt+=key;}
   appState.addAmount=amt;
   document.getElementById('add-amount-display').textContent=amt||'0';
 }
@@ -661,8 +806,7 @@ function buildCatTabs(){
 }
 
 function selectCat(catId){
-  appState.addCategory=catId;appState.addSubcat='';
-  buildCatTabs();buildSubcatGrid();
+  appState.addCategory=catId;appState.addSubcat='';buildCatTabs();buildSubcatGrid();
 }
 
 function buildSubcatGrid(){
@@ -677,8 +821,7 @@ function buildSubcatGrid(){
       <div class="subcat-name">${s.name}</div>
     </div>`).join('')+`
     <div class="subcat-item" style="border-style:dashed" onclick="openAddCatModal()">
-      <div class="subcat-icon">＋</div>
-      <div class="subcat-name">自訂</div>
+      <div class="subcat-icon">＋</div><div class="subcat-name">自訂</div>
     </div>`;
 }
 
@@ -742,8 +885,7 @@ function renderStats(){
   const catGroups={};
   expenses.forEach(r=>{if(!catGroups[r.cat])catGroups[r.cat]=0;catGroups[r.cat]+=r.amount;});
   const sorted=Object.entries(catGroups).sort((a,b)=>b[1]-a[1]);
-  drawPieChart(sorted,totalExp);
-  renderStatDetail(sorted,totalExp);
+  drawPieChart(sorted,totalExp);renderStatDetail(sorted,totalExp);
 }
 
 function drawPieChart(data,total){
@@ -767,7 +909,7 @@ function drawPieChart(data,total){
   });
   ctx.beginPath();ctx.arc(100,100,45,0,Math.PI*2);ctx.fillStyle='white';ctx.fill();
   ctx.fillStyle='#333';ctx.font='bold 13px sans-serif';ctx.textAlign='center';ctx.fillText('支出',100,97);
-  ctx.fillStyle='var(--primary)';ctx.font='bold 11px sans-serif';ctx.fillText(formatAmount(total),100,113);
+  ctx.font='bold 11px sans-serif';ctx.fillText(formatAmount(total),100,113);
   document.getElementById('chart-legend').innerHTML=legend.map(l=>`
     <div class="legend-item">
       <div class="legend-dot" style="background:${l.color}"></div>
@@ -800,13 +942,55 @@ function renderStatDetail(data,total){
 function renderSettings(){
   document.getElementById('currency-ntd-btn').classList.toggle('active',appState.currency==='NTD');
   document.getElementById('currency-jpy-btn').classList.toggle('active',appState.currency==='JPY');
-  buildThemeGrid();
-  renderCustomCats();
+  const toggle=document.getElementById('reminder-toggle');
+  toggle.classList.toggle('on',appState.reminderOn);
+  document.getElementById('reminder-time-row').classList.toggle('hidden',!appState.reminderOn);
+  document.getElementById('reminder-time').value=appState.reminderTime;
+  buildThemeGrid();renderCustomCats();
 }
 
 function setCurrency(cur){
   appState.currency=cur;saveData();renderSettings();
   showToast(`已切換為${cur==='NTD'?'台幣 NT$':'日幣 ¥'} 💱`);
+}
+
+function toggleReminder(){
+  if(!appState.reminderOn){
+    if('Notification' in window){
+      Notification.requestPermission().then(p=>{
+        if(p==='granted'){
+          appState.reminderOn=true;saveData();renderSettings();
+          scheduleReminder();showToast('提醒已開啟 🔔');
+        }else{showToast('請允許通知權限 🔔');}
+      });
+    }else{showToast('您的瀏覽器不支援通知');}
+  }else{
+    appState.reminderOn=false;saveData();renderSettings();
+    if(reminderTimer) clearTimeout(reminderTimer);
+    showToast('提醒已關閉');
+  }
+}
+
+function saveReminderTime(){
+  appState.reminderTime=document.getElementById('reminder-time').value;
+  saveData();scheduleReminder();showToast('提醒時間已更新 ✓');
+}
+
+function scheduleReminder(){
+  if(!appState.reminderOn) return;
+  if(reminderTimer) clearTimeout(reminderTimer);
+  const[h,m]=appState.reminderTime.split(':').map(Number);
+  const now=new Date();
+  const target=new Date();
+  target.setHours(h,m,0,0);
+  if(target<=now) target.setDate(target.getDate()+1);
+  const ms=target-now;
+  reminderTimer=setTimeout(()=>{
+    if(Notification.permission==='granted'){
+      new Notification('就是記帳 💰',{body:'記得今天的帳還沒記哦！',icon:'icon-192.png'});
+    }
+    scheduleReminder();
+  },ms);
 }
 
 function renderCustomCats(){
@@ -899,6 +1083,7 @@ function init(){
   loadData();
   applyTheme(appState.theme);
   setAddCurrency(appState.currency);
+  if(appState.reminderOn) scheduleReminder();
   renderHome();
 }
 
