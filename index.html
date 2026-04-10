@@ -384,8 +384,10 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
 
     <!-- 日期選擇 -->
     <div class="date-picker-row">
-      <span class="date-picker-label">📅 記帳日期</span>
-      <input type="date" class="date-picker-input" id="add-date">
+      <span class="date-picker-label">📅</span>
+      <button onclick="shiftAddDate(-1)" style="background:none;border:none;font-size:20px;color:var(--primary);cursor:pointer;padding:0 4px">‹</button>
+      <input type="date" class="date-picker-input" id="add-date" style="text-align:center">
+      <button onclick="shiftAddDate(1)" style="background:none;border:none;font-size:20px;color:var(--primary);cursor:pointer;padding:0 4px">›</button>
     </div>
 
     <!-- 金額 + 記錄完成並排 -->
@@ -906,21 +908,41 @@ async function deleteCurrentRecord(){
 
 /* ── 新增記帳 ── */
 function openAddModal(){
+  /* 鎖定背景滾動 */
+  document.body.style.overflow='hidden';
+  
   appState.addAmount='';appState.addCategory='';appState.addSubcat='';
   document.getElementById('add-amount-display').textContent='0';
   document.getElementById('add-note').value='';
   document.getElementById('add-convert-display').textContent='';
-  /* 預設今天日期 */
-  const today=new Date();
-  const yyyy=today.getFullYear();
-  const mm=String(today.getMonth()+1).padStart(2,'0');
-  const dd=String(today.getDate()).padStart(2,'0');
+  
+  /* 預設帶入首頁當前查看的日期 */
+  const d=appState.homeDate||new Date();
+  const yyyy=d.getFullYear();
+  const mm=String(d.getMonth()+1).padStart(2,'0');
+  const dd=String(d.getDate()).padStart(2,'0');
   document.getElementById('add-date').value=`${yyyy}-${mm}-${dd}`;
+  
   setAddType('expense');
   document.getElementById('add-modal').classList.add('show');
 }
+function shiftAddDate(dir){
+  const input=document.getElementById('add-date');
+  if(!input.value) return;
+  const d=new Date(input.value+'T00:00:00');
+  d.setDate(d.getDate()+dir);
+  const today=new Date();
+  if(d>today) return;
+  const yyyy=d.getFullYear();
+  const mm=String(d.getMonth()+1).padStart(2,'0');
+  const dd=String(d.getDate()).padStart(2,'0');
+  input.value=`${yyyy}-${mm}-${dd}`;
+}
 function handleModalBgClick(e,id){
-  if(e.target===document.getElementById(id)) document.getElementById(id).classList.remove('show');
+  if(e.target===document.getElementById(id)){
+    document.getElementById(id).classList.remove('show');
+    document.body.style.overflow='';
+  }
 }
 function setAddType(type){
   appState.addType=type;appState.addCategory='';appState.addSubcat='';
@@ -1056,6 +1078,7 @@ function initSwipeToClose(overlayId,boxId){
     if(currentY>100){
       box.style.transform='translateY(100%)';
       setTimeout(()=>{
+        document.body.style.overflow='';
         overlay.classList.remove('show');
         box.style.transform='';
         box.style.transition='';
