@@ -18,12 +18,20 @@
   --text:#2D1B35;--text-sub:#9B7FA6;--border:#F0D6E8;
   --shadow:0 4px 20px rgba(255,107,157,0.15);
   --success:#34D399;--danger:#F87171;
+  --grad:linear-gradient(135deg,#FF6B9D,#C084FC);
 }
-[data-theme="ocean"]{--primary:#3B82F6;--primary-light:#BFDBFE;--primary-dark:#1D4ED8;--secondary:#06B6D4;--bg:#F0F9FF;--card:#FFFFFF;--text:#1E3A5F;--text-sub:#64748B;--border:#BFDBFE;--shadow:0 4px 20px rgba(59,130,246,0.15);}
-[data-theme="matcha"]{--primary:#10B981;--primary-light:#A7F3D0;--primary-dark:#059669;--secondary:#34D399;--bg:#F0FDF4;--card:#FFFFFF;--text:#1A3D2B;--text-sub:#6B7280;--border:#A7F3D0;--shadow:0 4px 20px rgba(16,185,129,0.15);}
-[data-theme="night"]{--primary:#8B5CF6;--primary-light:#4C1D95;--primary-dark:#7C3AED;--secondary:#6D28D9;--bg:#0F0A1E;--card:#1E1B2E;--text:#E9D5FF;--text-sub:#A78BFA;--border:#4C1D95;--shadow:0 4px 20px rgba(139,92,246,0.3);}
-[data-theme="orange"]{--primary:#F59E0B;--primary-light:#FDE68A;--primary-dark:#D97706;--secondary:#FB923C;--bg:#FFFBEB;--card:#FFFFFF;--text:#3D1A00;--text-sub:#92400E;--border:#FDE68A;--shadow:0 4px 20px rgba(245,158,11,0.15);}
-[data-theme="sakura"]{--primary:#EC4899;--primary-light:#FBCFE8;--primary-dark:#BE185D;--secondary:#F9A8D4;--bg:#FFF0F6;--card:#FFFFFF;--text:#4A0020;--text-sub:#9D174D;--border:#FBCFE8;--shadow:0 4px 20px rgba(236,72,153,0.15);}
+/* ── 單色主題 ── */
+[data-theme="ocean"]{--primary:#3B82F6;--primary-light:#BFDBFE;--primary-dark:#1D4ED8;--secondary:#06B6D4;--bg:#F0F9FF;--card:#FFFFFF;--text:#1E3A5F;--text-sub:#64748B;--border:#BFDBFE;--shadow:0 4px 20px rgba(59,130,246,0.15);--grad:linear-gradient(135deg,#3B82F6,#06B6D4);}
+[data-theme="matcha"]{--primary:#10B981;--primary-light:#A7F3D0;--primary-dark:#059669;--secondary:#34D399;--bg:#F0FDF4;--card:#FFFFFF;--text:#1A3D2B;--text-sub:#6B7280;--border:#A7F3D0;--shadow:0 4px 20px rgba(16,185,129,0.15);--grad:linear-gradient(135deg,#10B981,#34D399);}
+[data-theme="night"]{--primary:#8B5CF6;--primary-light:#4C1D95;--primary-dark:#7C3AED;--secondary:#6D28D9;--bg:#0F0A1E;--card:#1E1B2E;--text:#E9D5FF;--text-sub:#A78BFA;--border:#4C1D95;--shadow:0 4px 20px rgba(139,92,246,0.3);--grad:linear-gradient(135deg,#8B5CF6,#6D28D9);}
+[data-theme="orange"]{--primary:#F59E0B;--primary-light:#FDE68A;--primary-dark:#D97706;--secondary:#FB923C;--bg:#FFFBEB;--card:#FFFFFF;--text:#3D1A00;--text-sub:#92400E;--border:#FDE68A;--shadow:0 4px 20px rgba(245,158,11,0.15);--grad:linear-gradient(135deg,#F59E0B,#FB923C);}
+[data-theme="sakura"]{--primary:#EC4899;--primary-light:#FBCFE8;--primary-dark:#BE185D;--secondary:#F9A8D4;--bg:#FFF0F6;--card:#FFFFFF;--text:#4A0020;--text-sub:#9D174D;--border:#FBCFE8;--shadow:0 4px 20px rgba(236,72,153,0.15);--grad:linear-gradient(135deg,#EC4899,#F9A8D4);}
+/* ── 自然漸層主題 ── */
+[data-theme="forest"]{--primary:#2D6A4F;--primary-light:#B7E4C7;--primary-dark:#1B4332;--secondary:#74C69D;--bg:#F0FFF4;--card:#FFFFFF;--text:#1B4332;--text-sub:#52796F;--border:#B7E4C7;--shadow:0 4px 20px rgba(45,106,79,0.15);--grad:linear-gradient(135deg,#2D6A4F,#74C69D);}
+[data-theme="deepsea"]{--primary:#0077B6;--primary-light:#ADE8F4;--primary-dark:#023E8A;--secondary:#48CAE4;--bg:#EFF9FB;--card:#FFFFFF;--text:#03045E;--text-sub:#0096C7;--border:#ADE8F4;--shadow:0 4px 20px rgba(0,119,182,0.15);--grad:linear-gradient(135deg,#023E8A,#48CAE4);}
+[data-theme="sunset"]{--primary:#E76F51;--primary-light:#FFDDD2;--primary-dark:#C1440E;--secondary:#F4A261;--bg:#FFF8F5;--card:#FFFFFF;--text:#370617;--text-sub:#AE2012;--border:#FFDDD2;--shadow:0 4px 20px rgba(231,111,81,0.15);--grad:linear-gradient(135deg,#E63946,#E76F51,#F4A261);}
+[data-theme="lavender"]{--primary:#7B2D8B;--primary-light:#E0AAFF;--primary-dark:#5A0080;--secondary:#C77DFF;--bg:#F8F0FF;--card:#FFFFFF;--text:#240046;--text-sub:#7B2FBE;--border:#E0AAFF;--shadow:0 4px 20px rgba(123,45,139,0.15);--grad:linear-gradient(135deg,#7B2D8B,#C77DFF,#E0AAFF);}
+
 body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px;overflow-x:hidden;transition:background 0.3s,color 0.3s}
 .nav-bar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:2px solid var(--border);display:flex;z-index:100;padding-bottom:env(safe-area-inset-bottom);transition:background 0.3s,border-color 0.3s}
 .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 0;cursor:pointer;transition:all 0.2s;color:var(--text-sub);font-size:11px;gap:3px}
@@ -32,7 +40,7 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
 .nav-icon{font-size:22px;line-height:1}
 .screen{display:none;padding:0 0 20px}
 .screen.active{display:block}
-.page-header{background:linear-gradient(135deg,var(--primary),var(--secondary));padding:20px 16px 24px;position:relative;overflow:hidden}
+.page-header{background:var(--grad);padding:20px 16px 24px;position:relative;overflow:hidden}
 .page-header::before{content:'🌸';position:absolute;top:-10px;right:-10px;font-size:80px;opacity:0.15}
 .page-title{font-size:22px;font-weight:bold;color:white;margin-bottom:4px}
 .page-sub{font-size:13px;color:rgba(255,255,255,0.8)}
@@ -46,41 +54,60 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
 .btn-danger{background:var(--danger);color:white}
 .btn-full{width:100%}
 .btn-sm{padding:6px 14px;font-size:12px}
-.add-btn-float{position:fixed;bottom:80px;right:20px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;font-size:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,0.25);z-index:99;transition:all 0.2s;border:none}
+.add-btn-float{position:fixed;bottom:80px;right:20px;width:60px;height:60px;border-radius:50%;background:var(--grad);color:white;font-size:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,0.25);z-index:99;transition:all 0.2s;border:none}
 .add-btn-float:active{transform:scale(0.9)}
+
+/* ── Modal ── */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;display:none;align-items:flex-end}
 .modal-overlay.show{display:flex}
-.modal-box{background:var(--card);border-radius:28px 28px 0 0;width:100%;max-height:92vh;overflow-y:auto;padding:20px 16px;padding-bottom:calc(20px + env(safe-area-inset-bottom));animation:slideUp 0.3s ease;transition:background 0.3s}
+.modal-box{background:var(--card);border-radius:28px 28px 0 0;width:100%;max-height:92vh;overflow-y:auto;padding:8px 16px 20px;padding-bottom:calc(20px + env(safe-area-inset-bottom));transition:background 0.3s;touch-action:pan-y;user-select:none}
+.modal-box.animating{transition:transform 0.3s ease}
 @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.modal-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px}
-.modal-title{font-size:18px;font-weight:bold;color:var(--text);margin-bottom:16px;text-align:center}
-.amount-display{background:var(--bg);border-radius:16px;padding:16px;margin-bottom:16px;text-align:center;transition:background 0.3s}
-.currency-switch{display:flex;gap:8px;justify-content:center;margin-bottom:8px}
-.currency-btn{padding:4px 12px;border-radius:50px;font-size:12px;font-weight:bold;cursor:pointer;border:2px solid var(--border);background:var(--card);color:var(--text-sub);transition:all 0.2s}
+.modal-box.slide-in{animation:slideUp 0.3s ease}
+.modal-handle{width:40px;height:5px;background:var(--border);border-radius:3px;margin:8px auto 14px;cursor:grab;flex-shrink:0}
+
+.modal-title{font-size:18px;font-weight:bold;color:var(--text);margin-bottom:12px;text-align:center}
+
+/* ── 金額區 + 記錄按鈕並排 ── */
+.amount-row{display:flex;align-items:stretch;gap:10px;margin-bottom:12px}
+.amount-display{background:var(--bg);border-radius:16px;padding:12px 14px;flex:1;transition:background 0.3s}
+.currency-switch{display:flex;gap:6px;margin-bottom:6px}
+.currency-btn{padding:3px 10px;border-radius:50px;font-size:11px;font-weight:bold;cursor:pointer;border:2px solid var(--border);background:var(--card);color:var(--text-sub);transition:all 0.2s}
 .currency-btn.active{background:var(--primary);color:white;border-color:var(--primary)}
-.amount-number{font-size:42px;font-weight:bold;color:var(--text);min-height:52px;display:flex;align-items:center;justify-content:center;gap:4px}
-.amount-currency{font-size:20px;color:var(--text-sub);font-weight:normal}
-.numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
-.numpad-key{background:var(--bg);border:none;border-radius:14px;padding:16px;font-size:20px;font-weight:bold;color:var(--text);cursor:pointer;transition:all 0.15s;display:flex;align-items:center;justify-content:center}
+.amount-number{font-size:36px;font-weight:bold;color:var(--text);min-height:44px;display:flex;align-items:center;gap:4px}
+.amount-currency{font-size:16px;color:var(--text-sub);font-weight:normal}
+.save-btn-side{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--primary);color:white;border:none;border-radius:16px;padding:12px 14px;cursor:pointer;font-weight:bold;font-size:12px;gap:4px;min-width:64px;box-shadow:0 4px 12px rgba(0,0,0,0.2);transition:all 0.2s;flex-shrink:0}
+.save-btn-side:active{transform:scale(0.95)}
+.save-btn-side .save-icon{font-size:22px}
+
+/* ── 數字鍵盤（縮小20%）── */
+.numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
+.numpad-key{background:var(--bg);border:none;border-radius:12px;padding:12px 8px;font-size:18px;font-weight:bold;color:var(--text);cursor:pointer;transition:all 0.15s;display:flex;align-items:center;justify-content:center}
 .numpad-key:active{transform:scale(0.92);background:var(--primary-light)}
 .numpad-key.del{background:#FEE2E2;color:var(--danger)}
-.type-switch{display:flex;background:var(--bg);border-radius:14px;padding:4px;margin-bottom:12px;transition:background 0.3s}
+
+/* ── 日期選擇器 ── */
+.date-picker-row{display:flex;align-items:center;gap:8px;margin-bottom:12px;background:var(--bg);border-radius:14px;padding:10px 14px}
+.date-picker-label{font-size:12px;color:var(--text-sub);font-weight:bold;flex-shrink:0}
+.date-picker-input{border:none;background:transparent;font-size:14px;font-weight:bold;color:var(--primary);font-family:inherit;outline:none;flex:1;cursor:pointer}
+
+.type-switch{display:flex;background:var(--bg);border-radius:14px;padding:4px;margin-bottom:10px;transition:background 0.3s}
 .type-btn{flex:1;padding:8px;border-radius:10px;border:none;font-size:13px;font-weight:bold;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--text-sub)}
 .type-btn.active{background:var(--card);color:var(--primary);box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-.category-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;-webkit-overflow-scrolling:touch}
+.category-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:10px;-webkit-overflow-scrolling:touch}
 .category-tabs::-webkit-scrollbar{display:none}
 .cat-tab{white-space:nowrap;padding:6px 14px;border-radius:50px;font-size:12px;font-weight:bold;cursor:pointer;border:2px solid var(--border);background:var(--card);color:var(--text-sub);transition:all 0.2s;flex-shrink:0}
 .cat-tab.active{color:white;border-color:transparent}
-.subcategory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
-.subcat-item{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:14px;cursor:pointer;border:2px solid var(--border);background:var(--card);transition:all 0.2s}
+.subcategory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
+.subcat-item{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:12px;cursor:pointer;border:2px solid var(--border);background:var(--card);transition:all 0.2s}
 .subcat-item:active{transform:scale(0.94)}
 .subcat-item.selected{border-color:var(--primary);background:var(--primary-light)}
-.subcat-icon{font-size:22px}
+.subcat-icon{font-size:20px}
 .subcat-name{font-size:10px;color:var(--text-sub);text-align:center;line-height:1.2}
 .subcat-item.selected .subcat-name{color:var(--primary-dark);font-weight:bold}
-.note-input{width:100%;border:2px solid var(--border);border-radius:14px;padding:12px;font-size:14px;color:var(--text);outline:none;background:var(--bg);resize:none;font-family:inherit;transition:border-color 0.2s,background 0.3s}
+.note-input{width:100%;border:2px solid var(--border);border-radius:14px;padding:10px 12px;font-size:14px;color:var(--text);outline:none;background:var(--bg);resize:none;font-family:inherit;transition:border-color 0.2s,background 0.3s}
 .note-input:focus{border-color:var(--primary)}
-.summary-card{background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:24px;padding:20px;margin:12px 16px;color:white;position:relative;overflow:hidden}
+.summary-card{background:var(--grad);border-radius:24px;padding:20px;margin:12px 16px;color:white;position:relative;overflow:hidden}
 .summary-card::before{content:'💰';position:absolute;right:-10px;top:-10px;font-size:80px;opacity:0.15}
 .summary-balance{font-size:36px;font-weight:bold;margin-bottom:12px}
 .summary-row{display:flex;gap:12px}
@@ -117,13 +144,16 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
 .stat-list-item:last-child{border-bottom:none}
 .stat-bar-bg{flex:1;background:var(--bg);border-radius:50px;height:8px;overflow:hidden}
 .stat-bar-fill{height:8px;border-radius:50px;transition:width 0.5s}
-.theme-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px}
-.theme-card{border-radius:16px;padding:12px 8px;text-align:center;cursor:pointer;border:3px solid var(--border);transition:all 0.2s;background:var(--bg)}
+
+/* ── 主題格（4欄，支援更多主題）── */
+.theme-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:4px}
+.theme-card{border-radius:14px;padding:10px 6px;text-align:center;cursor:pointer;border:3px solid var(--border);transition:all 0.2s;background:var(--bg)}
 .theme-card:active{transform:scale(0.95)}
 .theme-card.selected{border-color:var(--primary);background:var(--card)}
-.theme-preview{width:40px;height:40px;border-radius:50%;margin:0 auto 6px}
-.theme-name{font-size:11px;font-weight:bold;color:var(--text)}
-.theme-sub{font-size:10px;color:var(--text-sub);margin-top:2px}
+.theme-preview{width:36px;height:36px;border-radius:50%;margin:0 auto 5px}
+.theme-name{font-size:10px;font-weight:bold;color:var(--text);line-height:1.2}
+.theme-sub{font-size:9px;color:var(--text-sub);margin-top:2px}
+
 .setting-item{display:flex;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);cursor:pointer}
 .setting-item:last-child{border-bottom:none}
 .setting-icon{font-size:22px;width:36px;text-align:center;flex-shrink:0}
@@ -144,7 +174,6 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
 .detail-value{font-size:14px;color:var(--text);font-weight:bold;flex:1}
 .time-input{background:var(--bg);border:2px solid var(--border);border-radius:12px;padding:8px 14px;font-size:16px;color:var(--text);outline:none;font-family:inherit;transition:border-color 0.2s}
 .time-input:focus{border-color:var(--primary)}
-/* 登入/註冊 */
 .auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:var(--bg)}
 .auth-box{background:var(--card);border-radius:28px;padding:28px 20px;width:100%;max-width:380px;box-shadow:var(--shadow);border:1px solid var(--border)}
 .auth-logo{text-align:center;font-size:50px;margin-bottom:8px}
@@ -154,11 +183,9 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
 .auth-input:focus{border-color:var(--primary)}
 .auth-switch{text-align:center;font-size:13px;color:var(--text-sub);margin-top:16px}
 .auth-switch span{color:var(--primary);cursor:pointer;font-weight:bold}
-/* 匯率 */
 .rate-bar{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:10px 14px;margin:8px 16px;display:flex;align-items:center;gap:8px;font-size:12px}
 .rate-val{font-weight:bold;color:var(--primary)}
 .rate-time{color:var(--text-sub);font-size:10px;margin-left:auto}
-/* 折線圖 */
 .line-chart-wrap{overflow-x:auto;padding-bottom:4px}
 .empty-state{text-align:center;padding:40px 20px;color:var(--text-sub)}
 .empty-icon{font-size:60px;margin-bottom:12px}
@@ -174,7 +201,6 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
 
 <div class="toast" id="toast"></div>
 
-<!-- 登入/註冊畫面 -->
 <div id="auth-screen" class="auth-wrap">
   <div class="auth-box">
     <div class="auth-logo">💰</div>
@@ -183,16 +209,13 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
     <input class="auth-input" type="email" id="auth-email" placeholder="電子郵件">
     <input class="auth-input" type="password" id="auth-password" placeholder="密碼（6位數以上）">
     <button class="btn btn-primary btn-full" id="auth-btn" onclick="handleAuth()">登入</button>
-    <div class="auth-switch" id="auth-switch">
-      還沒有帳號？<span onclick="toggleAuthMode()">立即註冊</span>
-    </div>
+    <div class="auth-switch" id="auth-switch">還沒有帳號？<span onclick="toggleAuthMode()">立即註冊</span></div>
     <div style="margin-top:12px;text-align:center">
       <span style="font-size:12px;color:var(--text-sub);cursor:pointer" onclick="useOfflineMode()">或者離線使用（不同步）</span>
     </div>
   </div>
 </div>
 
-<!-- 主應用 -->
 <div id="app" class="hidden">
   <nav class="nav-bar">
     <div class="nav-item active" onclick="switchTab('home')" id="nav-home"><div class="nav-icon">🏠</div><div>首頁</div></div>
@@ -209,10 +232,8 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
       <div class="page-sub" id="home-date"></div>
     </div>
     <div id="rate-bar" class="rate-bar">
-      <span>💱 匯率</span>
-      <span class="rate-val" id="rate-val">載入中...</span>
-      <span>JPY/NTD</span>
-      <span class="rate-time" id="rate-time"></span>
+      <span>💱 匯率</span><span class="rate-val" id="rate-val">載入中...</span>
+      <span>JPY/NTD</span><span class="rate-time" id="rate-time"></span>
     </div>
     <div class="summary-card">
       <div style="font-size:13px;opacity:0.85;margin-bottom:4px">本月收支總覽</div>
@@ -269,9 +290,7 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
     </div>
     <div class="card">
       <div class="card-title">📈 每月支出趨勢</div>
-      <div class="line-chart-wrap">
-        <canvas id="line-chart" height="160" style="width:100%;min-width:300px"></canvas>
-      </div>
+      <div class="line-chart-wrap"><canvas id="line-chart" height="160" style="width:100%;min-width:300px"></canvas></div>
     </div>
     <div class="card">
       <div class="card-title">📋 各類別明細</div>
@@ -349,27 +368,45 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
         <div class="setting-arrow">›</div>
       </div>
     </div>
-    <div style="text-align:center;padding:20px;color:var(--text-sub);font-size:12px">就是記帳 v3.0 💕<br>支援雲端同步</div>
+    <div style="text-align:center;padding:20px;color:var(--text-sub);font-size:12px">就是記帳 v3.1 💕<br>支援雲端同步</div>
   </div>
 </div>
 
 <!-- 新增記帳 Modal -->
-<div class="modal-overlay" id="add-modal" onclick="handleModalClick(event,'add-modal')">
-  <div class="modal-box" onclick="event.stopPropagation()">
-    <div class="modal-handle"></div>
+<div class="modal-overlay" id="add-modal" onclick="handleModalBgClick(event,'add-modal')">
+  <div class="modal-box slide-in" id="add-modal-box" onclick="event.stopPropagation()">
+    <div class="modal-handle" id="add-modal-handle"></div>
     <div class="modal-title">新增記錄 ✨</div>
     <div class="type-switch">
       <button class="type-btn active" id="add-type-expense" onclick="setAddType('expense')">💸 支出</button>
       <button class="type-btn" id="add-type-income" onclick="setAddType('income')">💵 收入</button>
     </div>
-    <div class="amount-display">
-      <div class="currency-switch">
-        <button class="currency-btn active" id="add-curr-ntd" onclick="setAddCurrency('NTD')">NT$</button>
-        <button class="currency-btn" id="add-curr-jpy" onclick="setAddCurrency('JPY')">¥</button>
-      </div>
-      <div class="amount-number"><span class="amount-currency" id="add-curr-symbol">NT$</span><span id="add-amount-display">0</span></div>
-      <div id="add-convert-display" style="font-size:12px;color:var(--text-sub);margin-top:4px"></div>
+
+    <!-- 日期選擇 -->
+    <div class="date-picker-row">
+      <span class="date-picker-label">📅 記帳日期</span>
+      <input type="date" class="date-picker-input" id="add-date">
     </div>
+
+    <!-- 金額 + 記錄完成並排 -->
+    <div class="amount-row">
+      <div class="amount-display">
+        <div class="currency-switch">
+          <button class="currency-btn active" id="add-curr-ntd" onclick="setAddCurrency('NTD')">NT$</button>
+          <button class="currency-btn" id="add-curr-jpy" onclick="setAddCurrency('JPY')">¥</button>
+        </div>
+        <div class="amount-number">
+          <span class="amount-currency" id="add-curr-symbol">NT$</span>
+          <span id="add-amount-display">0</span>
+        </div>
+        <div id="add-convert-display" style="font-size:11px;color:var(--text-sub);margin-top:2px"></div>
+      </div>
+      <button class="save-btn-side" onclick="saveRecord()">
+        <span class="save-icon">✓</span>
+        <span>記錄</span>
+      </button>
+    </div>
+
     <div class="numpad">
       <button class="numpad-key" onclick="numpadPress('7')">7</button><button class="numpad-key" onclick="numpadPress('8')">8</button><button class="numpad-key" onclick="numpadPress('9')">9</button>
       <button class="numpad-key" onclick="numpadPress('4')">4</button><button class="numpad-key" onclick="numpadPress('5')">5</button><button class="numpad-key" onclick="numpadPress('6')">6</button>
@@ -379,14 +416,13 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
     <div class="category-tabs" id="add-cat-tabs"></div>
     <div class="subcategory-grid" id="add-subcat-grid"></div>
     <textarea class="note-input" id="add-note" placeholder="備註（選填）✏️" rows="2"></textarea>
-    <button class="btn btn-primary btn-full" style="margin-top:12px" onclick="saveRecord()">記錄完成 ✓</button>
   </div>
 </div>
 
 <!-- 詳細/編輯 Modal -->
-<div class="modal-overlay" id="detail-modal" onclick="handleModalClick(event,'detail-modal')">
-  <div class="modal-box" onclick="event.stopPropagation()">
-    <div class="modal-handle"></div>
+<div class="modal-overlay" id="detail-modal" onclick="handleModalBgClick(event,'detail-modal')">
+  <div class="modal-box slide-in" id="detail-modal-box" onclick="event.stopPropagation()">
+    <div class="modal-handle" id="detail-modal-handle"></div>
     <div id="detail-view">
       <div class="detail-header">
         <div class="detail-icon-big" id="detail-icon"></div>
@@ -412,12 +448,15 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
         <button class="type-btn active" id="edit-type-expense" onclick="setEditType('expense')">💸 支出</button>
         <button class="type-btn" id="edit-type-income" onclick="setEditType('income')">💵 收入</button>
       </div>
-      <div class="amount-display">
-        <div class="currency-switch">
-          <button class="currency-btn active" id="edit-curr-ntd" onclick="setEditCurrency('NTD')">NT$</button>
-          <button class="currency-btn" id="edit-curr-jpy" onclick="setEditCurrency('JPY')">¥</button>
+      <div class="amount-row">
+        <div class="amount-display">
+          <div class="currency-switch">
+            <button class="currency-btn active" id="edit-curr-ntd" onclick="setEditCurrency('NTD')">NT$</button>
+            <button class="currency-btn" id="edit-curr-jpy" onclick="setEditCurrency('JPY')">¥</button>
+          </div>
+          <div class="amount-number"><span class="amount-currency" id="edit-curr-symbol">NT$</span><span id="edit-amount-display">0</span></div>
         </div>
-        <div class="amount-number"><span class="amount-currency" id="edit-curr-symbol">NT$</span><span id="edit-amount-display">0</span></div>
+        <button class="save-btn-side" onclick="saveEdit()"><span class="save-icon">✓</span><span>儲存</span></button>
       </div>
       <div class="numpad">
         <button class="numpad-key" onclick="editNumpadPress('7')">7</button><button class="numpad-key" onclick="editNumpadPress('8')">8</button><button class="numpad-key" onclick="editNumpadPress('9')">9</button>
@@ -428,18 +467,15 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
       <div class="category-tabs" id="edit-cat-tabs"></div>
       <div class="subcategory-grid" id="edit-subcat-grid"></div>
       <textarea class="note-input" id="edit-note" placeholder="備註（選填）✏️" rows="2"></textarea>
-      <div style="display:flex;gap:8px;margin-top:12px">
-        <button class="btn btn-gray btn-full" onclick="closeEditMode()">取消</button>
-        <button class="btn btn-primary btn-full" onclick="saveEdit()">儲存 ✓</button>
-      </div>
+      <button class="btn btn-gray btn-full" style="margin-top:10px" onclick="closeEditMode()">取消</button>
     </div>
   </div>
 </div>
 
-<!-- 新增自訂類別 Modal -->
-<div class="modal-overlay" id="add-cat-modal" onclick="handleModalClick(event,'add-cat-modal')">
-  <div class="modal-box" onclick="event.stopPropagation()" style="max-height:70vh">
-    <div class="modal-handle"></div>
+<!-- 自訂類別 Modal -->
+<div class="modal-overlay" id="add-cat-modal" onclick="handleModalBgClick(event,'add-cat-modal')">
+  <div class="modal-box slide-in" id="add-cat-modal-box" onclick="event.stopPropagation()" style="max-height:70vh">
+    <div class="modal-handle" id="add-cat-modal-handle"></div>
     <div class="modal-title">新增自訂細項 🎨</div>
     <div style="margin-bottom:12px">
       <div style="font-size:13px;color:var(--text-sub);margin-bottom:8px">選擇類別</div>
@@ -457,16 +493,23 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px
     <button class="btn btn-primary btn-full" onclick="saveCustomSubcat()">新增 ✓</button>
   </div>
 </div>
+
 <script>
 const API_URL='https://moneybook-api.onrender.com';
 
 const THEMES=[
-  {id:'pink',name:'粉紅少女',sub:'預設',color:'#FF6B9D'},
-  {id:'ocean',name:'海洋藍',sub:'清爽',color:'#3B82F6'},
-  {id:'matcha',name:'抹茶綠',sub:'自然',color:'#10B981'},
-  {id:'night',name:'深夜模式',sub:'護眼',color:'#8B5CF6'},
-  {id:'orange',name:'橘子汽水',sub:'活潑',color:'#F59E0B'},
-  {id:'sakura',name:'櫻花白',sub:'簡約',color:'#EC4899'}
+  /* 單色主題 */
+  {id:'pink',   name:'粉紅少女', sub:'單色', grad:'linear-gradient(135deg,#FF6B9D,#C084FC)'},
+  {id:'ocean',  name:'海洋藍',   sub:'單色', grad:'linear-gradient(135deg,#3B82F6,#06B6D4)'},
+  {id:'matcha', name:'抹茶綠',   sub:'單色', grad:'linear-gradient(135deg,#10B981,#34D399)'},
+  {id:'night',  name:'深夜紫',   sub:'單色', grad:'linear-gradient(135deg,#8B5CF6,#6D28D9)'},
+  {id:'orange', name:'橘子汽水', sub:'單色', grad:'linear-gradient(135deg,#F59E0B,#FB923C)'},
+  {id:'sakura', name:'櫻花白',   sub:'單色', grad:'linear-gradient(135deg,#EC4899,#F9A8D4)'},
+  /* 自然漸層主題 */
+  {id:'forest',   name:'森林晨霧', sub:'漸層', grad:'linear-gradient(135deg,#1B4332,#74C69D)'},
+  {id:'deepsea',  name:'深海藍調', sub:'漸層', grad:'linear-gradient(135deg,#023E8A,#48CAE4)'},
+  {id:'sunset',   name:'日落餘暉', sub:'漸層', grad:'linear-gradient(135deg,#E63946,#F4A261)'},
+  {id:'lavender', name:'薰衣草田', sub:'漸層', grad:'linear-gradient(135deg,#7B2D8B,#E0AAFF)'},
 ];
 
 const CATEGORIES={
@@ -525,9 +568,7 @@ let appState={
 
 let reminderTimer=null;
 
-/* ==========================================
-   存讀檔
-   ========================================== */
+/* ── 存讀檔 ── */
 function saveLocal(){
   try{
     localStorage.setItem('moneybook_v1',JSON.stringify({
@@ -539,7 +580,6 @@ function saveLocal(){
     }));
   }catch(e){}
 }
-
 function loadLocal(){
   try{
     const raw=localStorage.getItem('moneybook_v1');
@@ -557,9 +597,7 @@ function loadLocal(){
   }catch(e){}
 }
 
-/* ==========================================
-   API 呼叫
-   ========================================== */
+/* ── API ── */
 async function apiCall(method,path,body=null){
   const headers={'Content-Type':'application/json'};
   if(appState.token) headers['Authorization']=`Bearer ${appState.token}`;
@@ -571,16 +609,13 @@ async function apiCall(method,path,body=null){
   return data;
 }
 
-/* ==========================================
-   匯率
-   ========================================== */
+/* ── 匯率 ── */
 async function fetchExchangeRate(){
   try{
     const res=await fetch('https://api.exchangerate-api.com/v4/latest/JPY');
     const data=await res.json();
     const rate=data.rates?.TWD||0.22;
     appState.exchangeRate=rate;
-    appState.rateUpdatedAt=new Date();
     const rateEl=document.getElementById('rate-val');
     const timeEl=document.getElementById('rate-time');
     if(rateEl) rateEl.textContent=`1¥ = NT$${rate.toFixed(4)}`;
@@ -591,21 +626,14 @@ async function fetchExchangeRate(){
     if(rateEl) rateEl.textContent='1¥ ≈ NT$0.22';
   }
 }
-
 function convertAmount(amount,fromCurrency){
   if(!appState.exchangeRate) return null;
-  if(fromCurrency==='JPY'){
-    return`≈ NT$${Math.round(amount*appState.exchangeRate).toLocaleString()}`;
-  }else{
-    return`≈ ¥${Math.round(amount/appState.exchangeRate).toLocaleString()}`;
-  }
+  if(fromCurrency==='JPY') return`≈ NT$${Math.round(amount*appState.exchangeRate).toLocaleString()}`;
+  return`≈ ¥${Math.round(amount/appState.exchangeRate).toLocaleString()}`;
 }
 
-/* ==========================================
-   帳號系統
-   ========================================== */
+/* ── 帳號 ── */
 let authMode='login';
-
 function toggleAuthMode(){
   authMode=authMode==='login'?'register':'login';
   document.getElementById('auth-sub').textContent=authMode==='login'?'登入你的帳號':'建立新帳號';
@@ -614,7 +642,6 @@ function toggleAuthMode(){
     '還沒有帳號？<span onclick="toggleAuthMode()">立即註冊</span>':
     '已有帳號？<span onclick="toggleAuthMode()">返回登入</span>';
 }
-
 async function handleAuth(){
   const email=document.getElementById('auth-email').value.trim();
   const password=document.getElementById('auth-password').value;
@@ -624,30 +651,12 @@ async function handleAuth(){
   try{
     const path=authMode==='login'?'/auth/login':'/auth/register';
     const data=await apiCall('POST',path,{email,password});
-    if(authMode==='register'){
-      showToast('註冊成功！請登入 🎉');
-      toggleAuthMode();
-    }else{
-      appState.token=data.token;
-      appState.userEmail=email;
-      appState.isOffline=false;
-      saveLocal();
-      await loadCloudRecords();
-      showApp();
-    }
-  }catch(e){
-    showToast(e.message||'發生錯誤，請再試一次');
-  }finally{
-    btn.textContent=authMode==='login'?'登入':'註冊';
-    btn.disabled=false;
-  }
+    if(authMode==='register'){showToast('註冊成功！請登入 🎉');toggleAuthMode();}
+    else{appState.token=data.token;appState.userEmail=email;appState.isOffline=false;saveLocal();await loadCloudRecords();showApp();}
+  }catch(e){showToast(e.message||'發生錯誤，請再試一次');}
+  finally{btn.textContent=authMode==='login'?'登入':'註冊';btn.disabled=false;}
 }
-
-function useOfflineMode(){
-  appState.isOffline=true;appState.token=null;appState.userEmail=null;
-  saveLocal();showApp();
-}
-
+function useOfflineMode(){appState.isOffline=true;appState.token=null;appState.userEmail=null;saveLocal();showApp();}
 function showApp(){
   document.getElementById('auth-screen').classList.add('hidden');
   document.getElementById('app').classList.remove('hidden');
@@ -656,7 +665,6 @@ function showApp(){
   if(appState.reminderOn) scheduleReminder();
   renderHome();
 }
-
 function logout(){
   if(!confirm('確定要登出嗎？')) return;
   appState.token=null;appState.userEmail=null;appState.records=[];appState.isOffline=false;
@@ -665,46 +673,34 @@ function logout(){
   document.getElementById('auth-screen').classList.remove('hidden');
   showToast('已登出');
 }
-
 async function loadCloudRecords(){
   if(appState.isOffline||!appState.token) return;
-  try{
-    const data=await apiCall('GET','/records');
-    appState.records=data.records||[];
-  }catch(e){
-    showToast('載入記錄失敗，使用本地資料');
-  }
+  try{const data=await apiCall('GET','/records');appState.records=data.records||[];}
+  catch(e){showToast('載入記錄失敗');}
 }
 
-/* ==========================================
-   工具函式
-   ========================================== */
+/* ── 工具 ── */
 function formatAmount(amount,currency){
   const cur=currency||appState.currency;
   if(cur==='JPY') return`¥${Math.round(amount).toLocaleString()}`;
   return`NT$${parseFloat(amount).toLocaleString('zh-TW',{minimumFractionDigits:0,maximumFractionDigits:0})}`;
 }
-
 function formatDateLabel(date){
   const now=new Date();
   if(date.toDateString()===now.toDateString()) return'今天';
   if(date.toDateString()===new Date(now-86400000).toDateString()) return'昨天';
   return`${date.getMonth()+1}月${date.getDate()}日`;
 }
-
 function formatTime(dateStr){
   const d=new Date(dateStr);
   return`${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
 }
-
 function getDateStr(date){return date.toISOString().split('T')[0];}
-
 function showToast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg;t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
-
 function getCatInfo(type,catId,subcatId){
   const cats=type==='expense'?CATEGORIES.expense:CATEGORIES.income;
   const cat=cats.find(c=>c.id===catId);
@@ -714,18 +710,15 @@ function getCatInfo(type,catId,subcatId){
   if(!sub){const customs=appState.customSubs[catId]||[];sub=customs.find(s=>s.id===subcatId);}
   return sub?{name:sub.name,icon:sub.icon,color:cat.color}:{name:cat.name,icon:cat.icon,color:cat.color};
 }
-
 function applyTheme(themeId){
   const t=THEMES.find(t=>t.id===themeId)||THEMES[0];
   document.body.setAttribute('data-theme',themeId==='pink'?'':themeId);
   const meta=document.getElementById('theme-color-meta');
-  if(meta) meta.content=t.color;
+  if(meta) meta.content=t.grad.match(/#[a-fA-F0-9]{6}/)?.[0]||'#FF6B9D';
   appState.theme=themeId;
 }
 
-/* ==========================================
-   導航
-   ========================================== */
+/* ── 導航 ── */
 function switchTab(tab){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
@@ -738,9 +731,7 @@ function switchTab(tab){
   if(tab==='settings') renderSettings();
 }
 
-/* ==========================================
-   首頁
-   ========================================== */
+/* ── 首頁 ── */
 function changeHomeDate(dir){
   const d=new Date(appState.homeDate);
   d.setDate(d.getDate()+dir);
@@ -748,12 +739,10 @@ function changeHomeDate(dir){
   if(d>now) return;
   appState.homeDate=d;renderHome();
 }
-
 function renderHome(){
   const now=new Date();
   const hd=appState.homeDate;
-  document.getElementById('home-date').textContent=
-    `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日`;
+  document.getElementById('home-date').textContent=`${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日`;
   document.getElementById('home-date-label').textContent=formatDateLabel(hd);
   const monthStart=new Date(now.getFullYear(),now.getMonth(),1);
   const monthRecords=appState.records.filter(r=>{const d=new Date(r.date);return d>=monthStart&&d<=now;});
@@ -776,60 +765,36 @@ function renderHome(){
   container.innerHTML=dayRecords.map(r=>recordItemHTML(r,true)).join('');
 }
 
-/* ==========================================
-   記錄列表
-   ========================================== */
+/* ── 記錄列表 ── */
 function renderRecords(){
   const filtered=appState.filterType==='all'?appState.records:appState.records.filter(r=>r.type===appState.filterType);
   const sorted=[...filtered].sort((a,b)=>new Date(b.date)-new Date(a.date));
   const groups={};
   sorted.forEach(r=>{const k=r.date?r.date.split('T')[0]:getDateStr(new Date());if(!groups[k])groups[k]=[];groups[k].push(r);});
   const container=document.getElementById('records-list');
-  if(sorted.length===0){
-    container.innerHTML=`<div class="empty-state"><div class="empty-icon">📭</div><div class="empty-text">沒有記錄</div><div class="empty-sub">開始記錄你的收支吧！</div></div>`;
-    return;
-  }
+  if(sorted.length===0){container.innerHTML=`<div class="empty-state"><div class="empty-icon">📭</div><div class="empty-text">沒有記錄</div><div class="empty-sub">開始記錄你的收支吧！</div></div>`;return;}
   container.innerHTML=Object.entries(groups).map(([date,records])=>{
     const dayExp=records.filter(r=>r.type==='expense').reduce((s,r)=>s+r.amount,0);
     const d=new Date(date+'T00:00:00');
-    return`<div class="record-group">
-      <div class="record-group-title">
-        <span>${formatDateLabel(d)} ${d.getMonth()+1}月${d.getDate()}日</span>
-        <span style="color:var(--danger)">-${formatAmount(dayExp)}</span>
-      </div>
-      ${records.map(r=>recordItemHTML(r,true)).join('')}
-    </div>`;
+    return`<div class="record-group"><div class="record-group-title"><span>${formatDateLabel(d)} ${d.getMonth()+1}月${d.getDate()}日</span><span style="color:var(--danger)">-${formatAmount(dayExp)}</span></div>${records.map(r=>recordItemHTML(r,true)).join('')}</div>`;
   }).join('');
 }
-
 function recordItemHTML(r,clickable=false){
   const info=getCatInfo(r.type,r.cat,r.subcat);
   const isExpense=r.type==='expense';
   return`<div class="record-item" ${clickable?`onclick="openDetail('${r.id}')"`:''}>
     <div class="record-icon-wrap" style="background:${info.color}22"><span>${info.icon}</span></div>
-    <div class="record-info">
-      <div class="record-cat">${info.name}</div>
-      <div class="record-note">${r.note||formatTime(r.date)}</div>
-    </div>
-    <div class="record-right">
-      <div class="record-amount ${isExpense?'amount-expense':'amount-income'}">${isExpense?'-':'+'}${formatAmount(r.amount,r.currency)}</div>
-      <div class="record-time">${formatTime(r.date)}</div>
-    </div>
+    <div class="record-info"><div class="record-cat">${info.name}</div><div class="record-note">${r.note||formatTime(r.date)}</div></div>
+    <div class="record-right"><div class="record-amount ${isExpense?'amount-expense':'amount-income'}">${isExpense?'-':'+'}${formatAmount(r.amount,r.currency)}</div><div class="record-time">${formatTime(r.date)}</div></div>
   </div>`;
 }
-
 function filterRecords(type){
   appState.filterType=type;
-  ['all','expense','income'].forEach(t=>{
-    const btn=document.getElementById(`filter-${t}`);
-    btn.className=t===type?'btn btn-sm btn-primary':'btn btn-sm btn-outline';
-  });
+  ['all','expense','income'].forEach(t=>{document.getElementById(`filter-${t}`).className=t===type?'btn btn-sm btn-primary':'btn btn-sm btn-outline';});
   renderRecords();
 }
 
-/* ==========================================
-   詳細頁面
-   ========================================== */
+/* ── 詳細頁面 ── */
 function openDetail(id){
   const r=appState.records.find(r=>r.id===id);
   if(!r) return;
@@ -850,14 +815,12 @@ function openDetail(id){
   document.getElementById('detail-type').textContent=isExpense?'💸 支出':'💵 收入';
   document.getElementById('detail-currency').textContent=r.currency==='JPY'?'🇯🇵 日幣 ¥':'🇹🇼 台幣 NT$';
   const noteRow=document.getElementById('detail-note-row');
-  const noteVal=document.getElementById('detail-note-val');
-  if(r.note){noteRow.classList.remove('hidden');noteVal.textContent=r.note;}
+  if(r.note){noteRow.classList.remove('hidden');document.getElementById('detail-note-val').textContent=r.note;}
   else noteRow.classList.add('hidden');
   document.getElementById('detail-view').classList.remove('hidden');
   document.getElementById('edit-view').classList.add('hidden');
   document.getElementById('detail-modal').classList.add('show');
 }
-
 function openEditMode(){
   const r=appState.records.find(r=>r.id===appState.editId);
   if(!r) return;
@@ -870,24 +833,20 @@ function openEditMode(){
   document.getElementById('edit-view').classList.remove('hidden');
   buildEditCatTabs();
 }
-
 function closeEditMode(){
   document.getElementById('detail-view').classList.remove('hidden');
   document.getElementById('edit-view').classList.add('hidden');
 }
-
 function setEditType(type){
   appState.editType=type;
   ['expense','income'].forEach(t=>document.getElementById(`edit-type-${t}`).classList.toggle('active',t===type));
   buildEditCatTabs();
 }
-
 function setEditCurrency(cur){
   appState.editCurrency=cur;
   ['NTD','JPY'].forEach(c=>document.getElementById(`edit-curr-${c.toLowerCase()}`).classList.toggle('active',c===cur));
   document.getElementById('edit-curr-symbol').textContent=cur==='JPY'?'¥':'NT$';
 }
-
 function editNumpadPress(key){
   let amt=appState.editAmount;
   if(key==='del') amt=amt.slice(0,-1);
@@ -896,7 +855,6 @@ function editNumpadPress(key){
   appState.editAmount=amt;
   document.getElementById('edit-amount-display').textContent=amt||'0';
 }
-
 function buildEditCatTabs(){
   const cats=appState.editType==='expense'?CATEGORIES.expense:CATEGORIES.income;
   document.getElementById('edit-cat-tabs').innerHTML=cats.map(c=>`
@@ -906,11 +864,7 @@ function buildEditCatTabs(){
   if(appState.editCategory) buildEditSubcatGrid();
   else document.getElementById('edit-subcat-grid').innerHTML='';
 }
-
-function selectEditCat(catId){
-  appState.editCategory=catId;appState.editSubcat='';buildEditCatTabs();buildEditSubcatGrid();
-}
-
+function selectEditCat(catId){appState.editCategory=catId;appState.editSubcat='';buildEditCatTabs();buildEditSubcatGrid();}
 function buildEditSubcatGrid(){
   const cats=appState.editType==='expense'?CATEGORIES.expense:CATEGORIES.income;
   const cat=cats.find(c=>c.id===appState.editCategory);
@@ -922,35 +876,21 @@ function buildEditSubcatGrid(){
       <div class="subcat-icon">${s.icon}</div><div class="subcat-name">${s.name}</div>
     </div>`).join('');
 }
-
 function selectEditSubcat(id){appState.editSubcat=id;buildEditSubcatGrid();}
-
 async function saveEdit(){
   const amount=parseFloat(appState.editAmount);
   if(!amount||amount<=0){showToast('請輸入金額 💰');return;}
   if(!appState.editCategory){showToast('請選擇類別 📂');return;}
-  const updates={
-    type:appState.editType,currency:appState.editCurrency,amount,
-    cat:appState.editCategory,subcat:appState.editSubcat,
-    note:document.getElementById('edit-note').value.trim()
-  };
+  const updates={type:appState.editType,currency:appState.editCurrency,amount,cat:appState.editCategory,subcat:appState.editSubcat,note:document.getElementById('edit-note').value.trim()};
   try{
-    if(!appState.isOffline){
-      const data=await apiCall('PUT',`/records/${appState.editId}`,updates);
-      const idx=appState.records.findIndex(r=>r.id===appState.editId);
-      if(idx!==-1) appState.records[idx]={...appState.records[idx],...updates};
-    }else{
-      const idx=appState.records.findIndex(r=>r.id===appState.editId);
-      if(idx!==-1) appState.records[idx]={...appState.records[idx],...updates};
-      saveLocal();
-    }
+    if(!appState.isOffline){await apiCall('PUT',`/records/${appState.editId}`,updates);const idx=appState.records.findIndex(r=>r.id===appState.editId);if(idx!==-1) appState.records[idx]={...appState.records[idx],...updates};}
+    else{const idx=appState.records.findIndex(r=>r.id===appState.editId);if(idx!==-1) appState.records[idx]={...appState.records[idx],...updates};saveLocal();}
     document.getElementById('detail-modal').classList.remove('show');
     showToast('已儲存 ✓');
     if(appState.currentTab==='home') renderHome();
     if(appState.currentTab==='records') renderRecords();
   }catch(e){showToast('儲存失敗：'+e.message);}
 }
-
 async function deleteCurrentRecord(){
   if(!confirm('確定要刪除這筆記錄嗎？')) return;
   try{
@@ -964,46 +904,42 @@ async function deleteCurrentRecord(){
   }catch(e){showToast('刪除失敗：'+e.message);}
 }
 
-/* ==========================================
-   新增記帳
-   ========================================== */
+/* ── 新增記帳 ── */
 function openAddModal(){
   appState.addAmount='';appState.addCategory='';appState.addSubcat='';
   document.getElementById('add-amount-display').textContent='0';
   document.getElementById('add-note').value='';
   document.getElementById('add-convert-display').textContent='';
+  /* 預設今天日期 */
+  const today=new Date();
+  const yyyy=today.getFullYear();
+  const mm=String(today.getMonth()+1).padStart(2,'0');
+  const dd=String(today.getDate()).padStart(2,'0');
+  document.getElementById('add-date').value=`${yyyy}-${mm}-${dd}`;
   setAddType('expense');
   document.getElementById('add-modal').classList.add('show');
 }
-
-function handleModalClick(e,id){
+function handleModalBgClick(e,id){
   if(e.target===document.getElementById(id)) document.getElementById(id).classList.remove('show');
 }
-
 function setAddType(type){
   appState.addType=type;appState.addCategory='';appState.addSubcat='';
   ['expense','income'].forEach(t=>document.getElementById(`add-type-${t}`).classList.toggle('active',t===type));
   buildCatTabs();
 }
-
 function setAddCurrency(cur){
   appState.addCurrency=cur;
   ['NTD','JPY'].forEach(c=>document.getElementById(`add-curr-${c.toLowerCase()}`).classList.toggle('active',c===cur));
   document.getElementById('add-curr-symbol').textContent=cur==='JPY'?'¥':'NT$';
   updateConvertDisplay();
 }
-
 function updateConvertDisplay(){
   const amt=parseFloat(appState.addAmount);
   const el=document.getElementById('add-convert-display');
   if(!el) return;
-  if(amt>0&&appState.exchangeRate){
-    el.textContent=convertAmount(amt,appState.addCurrency)||'';
-  }else{
-    el.textContent='';
-  }
+  if(amt>0&&appState.exchangeRate) el.textContent=convertAmount(amt,appState.addCurrency)||'';
+  else el.textContent='';
 }
-
 function numpadPress(key){
   let amt=appState.addAmount;
   if(key==='del') amt=amt.slice(0,-1);
@@ -1013,7 +949,6 @@ function numpadPress(key){
   document.getElementById('add-amount-display').textContent=amt||'0';
   updateConvertDisplay();
 }
-
 function buildCatTabs(){
   const cats=appState.addType==='expense'?CATEGORIES.expense:CATEGORIES.income;
   document.getElementById('add-cat-tabs').innerHTML=cats.map(c=>`
@@ -1023,11 +958,7 @@ function buildCatTabs(){
   if(appState.addCategory) buildSubcatGrid();
   else document.getElementById('add-subcat-grid').innerHTML='';
 }
-
-function selectCat(catId){
-  appState.addCategory=catId;appState.addSubcat='';buildCatTabs();buildSubcatGrid();
-}
-
+function selectCat(catId){appState.addCategory=catId;appState.addSubcat='';buildCatTabs();buildSubcatGrid();}
 function buildSubcatGrid(){
   const cats=appState.addType==='expense'?CATEGORIES.expense:CATEGORIES.income;
   const cat=cats.find(c=>c.id===appState.addCategory);
@@ -1042,28 +973,30 @@ function buildSubcatGrid(){
       <div class="subcat-icon">＋</div><div class="subcat-name">自訂</div>
     </div>`;
 }
-
 function selectSubcat(id){appState.addSubcat=id;buildSubcatGrid();}
-
 async function saveRecord(){
   const amount=parseFloat(appState.addAmount);
   if(!amount||amount<=0){showToast('請輸入金額 💰');return;}
   if(!appState.addCategory){showToast('請選擇類別 📂');return;}
+  /* 使用選擇的日期，時間用現在 */
+  const selectedDate=document.getElementById('add-date').value;
+  const now=new Date();
+  let recordDate;
+  if(selectedDate){
+    const [y,m,d]=selectedDate.split('-').map(Number);
+    recordDate=new Date(y,m-1,d,now.getHours(),now.getMinutes(),now.getSeconds());
+  }else{
+    recordDate=now;
+  }
   const record={
-    date:new Date().toISOString(),type:appState.addType,
+    date:recordDate.toISOString(),type:appState.addType,
     currency:appState.addCurrency,amount,
     cat:appState.addCategory,subcat:appState.addSubcat,
     note:document.getElementById('add-note').value.trim()
   };
   try{
-    if(!appState.isOffline){
-      const data=await apiCall('POST','/records',record);
-      appState.records.unshift(data.record);
-    }else{
-      record.id=Date.now().toString();
-      appState.records.unshift(record);
-      saveLocal();
-    }
+    if(!appState.isOffline){const data=await apiCall('POST','/records',record);appState.records.unshift(data.record);}
+    else{record.id=Date.now().toString();appState.records.unshift(record);saveLocal();}
     document.getElementById('add-modal').classList.remove('show');
     showToast('記錄完成 ✨');
     if(appState.currentTab==='home') renderHome();
@@ -1071,9 +1004,48 @@ async function saveRecord(){
   }catch(e){showToast('新增失敗：'+e.message);}
 }
 
-/* ==========================================
-   統計
-   ========================================== */
+/* ── 下滑關閉 Modal ── */
+function initSwipeToClose(overlayId,boxId){
+  const box=document.getElementById(boxId);
+  if(!box) return;
+  let startY=0,currentY=0,isDragging=false;
+  const handle=box.querySelector('.modal-handle');
+  const startDrag=e=>{
+    const touch=e.touches?e.touches[0]:e;
+    startY=touch.clientY;isDragging=true;currentY=0;
+    box.style.transition='none';
+  };
+  const moveDrag=e=>{
+    if(!isDragging) return;
+    const touch=e.touches?e.touches[0]:e;
+    currentY=Math.max(0,touch.clientY-startY);
+    box.style.transform=`translateY(${currentY}px)`;
+    if(e.cancelable) e.preventDefault();
+  };
+  const endDrag=()=>{
+    if(!isDragging) return;
+    isDragging=false;
+    box.style.transition='transform 0.3s ease';
+    if(currentY>120){
+      box.style.transform='translateY(100%)';
+      setTimeout(()=>{
+        document.getElementById(overlayId).classList.remove('show');
+        box.style.transform='';box.style.transition='';
+      },300);
+    }else{
+      box.style.transform='';
+      setTimeout(()=>{box.style.transition='';},300);
+    }
+  };
+  if(handle){
+    handle.addEventListener('touchstart',startDrag,{passive:true});
+    handle.addEventListener('touchmove',moveDrag,{passive:false});
+    handle.addEventListener('touchend',endDrag);
+  }
+  box.addEventListener('touchstart',e=>{if(e.target===handle||handle?.contains(e.target)) startDrag(e);},{passive:true});
+}
+
+/* ── 統計 ── */
 function setPeriod(period){
   appState.statPeriod=period;
   document.querySelectorAll('.period-btn').forEach(b=>b.classList.remove('active'));
@@ -1081,25 +1053,21 @@ function setPeriod(period){
   document.getElementById('custom-date-range').classList.toggle('hidden',period!=='custom');
   if(period!=='custom') renderStats();
 }
-
 function applyCustomRange(){
   appState.statFrom=document.getElementById('date-from').value;
   appState.statTo=document.getElementById('date-to').value;
   if(!appState.statFrom||!appState.statTo){showToast('請選擇日期範圍');return;}
   renderStats();
 }
-
 function getStatRecords(){
   const now=new Date();let from,to=now;
-  if(appState.statPeriod==='day'){from=new Date(now.getFullYear(),now.getMonth(),now.getDate());}
+  if(appState.statPeriod==='day') from=new Date(now.getFullYear(),now.getMonth(),now.getDate());
   else if(appState.statPeriod==='week'){from=new Date(now);from.setDate(now.getDate()-now.getDay());from.setHours(0,0,0,0);}
-  else if(appState.statPeriod==='month'){from=new Date(now.getFullYear(),now.getMonth(),1);}
-  else if(appState.statPeriod==='custom'&&appState.statFrom&&appState.statTo){
-    from=new Date(appState.statFrom);to=new Date(appState.statTo);to.setHours(23,59,59,999);
-  }else{from=new Date(now.getFullYear(),now.getMonth(),1);}
+  else if(appState.statPeriod==='month') from=new Date(now.getFullYear(),now.getMonth(),1);
+  else if(appState.statPeriod==='custom'&&appState.statFrom&&appState.statTo){from=new Date(appState.statFrom);to=new Date(appState.statTo);to.setHours(23,59,59,999);}
+  else from=new Date(now.getFullYear(),now.getMonth(),1);
   return appState.records.filter(r=>{const d=new Date(r.date);return d>=from&&d<=to;});
 }
-
 function renderStats(){
   const records=getStatRecords();
   const expenses=records.filter(r=>r.type==='expense');
@@ -1115,11 +1083,8 @@ function renderStats(){
   const catGroups={};
   expenses.forEach(r=>{if(!catGroups[r.cat])catGroups[r.cat]=0;catGroups[r.cat]+=r.amount;});
   const sorted=Object.entries(catGroups).sort((a,b)=>b[1]-a[1]);
-  drawPieChart(sorted,totalExp);
-  drawLineChart();
-  renderStatDetail(sorted,totalExp);
+  drawPieChart(sorted,totalExp);drawLineChart();renderStatDetail(sorted,totalExp);
 }
-
 function drawPieChart(data,total){
   const canvas=document.getElementById('pie-chart');
   const ctx=canvas.getContext('2d');
@@ -1143,77 +1108,36 @@ function drawPieChart(data,total){
   ctx.fillStyle='#333';ctx.font='bold 13px sans-serif';ctx.textAlign='center';ctx.fillText('支出',100,97);
   ctx.font='bold 11px sans-serif';ctx.fillText(formatAmount(total),100,113);
   document.getElementById('chart-legend').innerHTML=legend.map(l=>`
-    <div class="legend-item">
-      <div class="legend-dot" style="background:${l.color}"></div>
+    <div class="legend-item"><div class="legend-dot" style="background:${l.color}"></div>
       <div style="flex:1"><div class="legend-name">${l.name}</div><div class="legend-val">${formatAmount(l.amount)}</div></div>
       <div style="font-size:12px;color:var(--text-sub)">${l.pct}%</div>
     </div>`).join('');
 }
-
 function drawLineChart(){
   const canvas=document.getElementById('line-chart');
   if(!canvas) return;
-  const W=canvas.offsetWidth||300;
-  canvas.width=W;
+  const W=canvas.offsetWidth||300;canvas.width=W;
   const H=160;canvas.height=H;
-  const ctx=canvas.getContext('2d');
-  ctx.clearRect(0,0,W,H);
-  const now=new Date();
-  const months=[];
-  for(let i=5;i>=0;i--){
-    const d=new Date(now.getFullYear(),now.getMonth()-i,1);
-    months.push({year:d.getFullYear(),month:d.getMonth(),label:`${d.getMonth()+1}月`});
-  }
-  const expData=months.map(m=>{
-    return appState.records.filter(r=>{
-      const d=new Date(r.date);
-      return r.type==='expense'&&d.getFullYear()===m.year&&d.getMonth()===m.month;
-    }).reduce((s,r)=>s+r.amount,0);
-  });
-  const incData=months.map(m=>{
-    return appState.records.filter(r=>{
-      const d=new Date(r.date);
-      return r.type==='income'&&d.getFullYear()===m.year&&d.getMonth()===m.month;
-    }).reduce((s,r)=>s+r.amount,0);
-  });
+  const ctx=canvas.getContext('2d');ctx.clearRect(0,0,W,H);
+  const now=new Date();const months=[];
+  for(let i=5;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth()-i,1);months.push({year:d.getFullYear(),month:d.getMonth(),label:`${d.getMonth()+1}月`});}
+  const expData=months.map(m=>appState.records.filter(r=>{const d=new Date(r.date);return r.type==='expense'&&d.getFullYear()===m.year&&d.getMonth()===m.month;}).reduce((s,r)=>s+r.amount,0));
+  const incData=months.map(m=>appState.records.filter(r=>{const d=new Date(r.date);return r.type==='income'&&d.getFullYear()===m.year&&d.getMonth()===m.month;}).reduce((s,r)=>s+r.amount,0));
   const maxVal=Math.max(...expData,...incData,1);
-  const padL=40;const padR=10;const padT=16;const padB=28;
-  const chartW=W-padL-padR;const chartH=H-padT-padB;
+  const padL=40,padR=10,padT=16,padB=28,chartW=W-padL-padR,chartH=H-padT-padB;
   ctx.strokeStyle='rgba(0,0,0,0.06)';ctx.lineWidth=1;
-  for(let i=0;i<=4;i++){
-    const y=padT+chartH*(i/4);
-    ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();
-    ctx.fillStyle='#9B7FA6';ctx.font='9px sans-serif';ctx.textAlign='right';
-    ctx.fillText(Math.round(maxVal*(1-i/4)/1000)+'k',padL-4,y+3);
-  }
+  for(let i=0;i<=4;i++){const y=padT+chartH*(i/4);ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();ctx.fillStyle='#9B7FA6';ctx.font='9px sans-serif';ctx.textAlign='right';ctx.fillText(Math.round(maxVal*(1-i/4)/1000)+'k',padL-4,y+3);}
   ctx.fillStyle='#9B7FA6';ctx.font='10px sans-serif';ctx.textAlign='center';
-  months.forEach((m,i)=>{
-    const x=padL+chartW*(i/(months.length-1));
-    ctx.fillText(m.label,x,H-6);
-  });
+  months.forEach((m,i)=>{const x=padL+chartW*(i/(months.length-1));ctx.fillText(m.label,x,H-6);});
   function drawLine(data,color){
     ctx.beginPath();ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.lineJoin='round';
-    data.forEach((val,i)=>{
-      const x=padL+chartW*(i/(months.length-1));
-      const y=padT+chartH*(1-val/maxVal);
-      if(i===0) ctx.moveTo(x,y);else ctx.lineTo(x,y);
-    });
+    data.forEach((val,i)=>{const x=padL+chartW*(i/(months.length-1));const y=padT+chartH*(1-val/maxVal);if(i===0) ctx.moveTo(x,y);else ctx.lineTo(x,y);});
     ctx.stroke();
-    data.forEach((val,i)=>{
-      const x=padL+chartW*(i/(months.length-1));
-      const y=padT+chartH*(1-val/maxVal);
-      ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);
-      ctx.fillStyle=color;ctx.fill();
-      ctx.strokeStyle='white';ctx.lineWidth=1.5;ctx.stroke();
-    });
+    data.forEach((val,i)=>{const x=padL+chartW*(i/(months.length-1));const y=padT+chartH*(1-val/maxVal);ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();ctx.strokeStyle='white';ctx.lineWidth=1.5;ctx.stroke();});
   }
-  drawLine(expData,'#F87171');
-  drawLine(incData,'#34D399');
-  ctx.font='10px sans-serif';ctx.textAlign='left';
-  ctx.fillStyle='#F87171';ctx.fillText('■ 支出',padL,12);
-  ctx.fillStyle='#34D399';ctx.fillText('■ 收入',padL+44,12);
+  drawLine(expData,'#F87171');drawLine(incData,'#34D399');
+  ctx.font='10px sans-serif';ctx.textAlign='left';ctx.fillStyle='#F87171';ctx.fillText('■ 支出',padL,12);ctx.fillStyle='#34D399';ctx.fillText('■ 收入',padL+44,12);
 }
-
 function renderStatDetail(data,total){
   const container=document.getElementById('stat-detail-list');
   if(data.length===0){container.innerHTML='<div style="text-align:center;color:var(--text-sub);padding:20px;font-size:13px">這段期間沒有支出記錄</div>';return;}
@@ -1223,36 +1147,24 @@ function renderStatDetail(data,total){
     const color=CHART_COLORS[i%CHART_COLORS.length];
     return`<div class="stat-list-item">
       <div style="font-size:20px;width:28px;text-align:center">${cat?cat.icon:'💰'}</div>
-      <div style="flex:1">
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-          <span style="font-size:13px;font-weight:bold">${cat?cat.name:catId}</span>
-          <span style="font-size:13px;color:var(--danger)">${formatAmount(amount)}</span>
-        </div>
-        <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:${pct}%;background:${color}"></div></div>
-      </div>
+      <div style="flex:1"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:13px;font-weight:bold">${cat?cat.name:catId}</span><span style="font-size:13px;color:var(--danger)">${formatAmount(amount)}</span></div><div class="stat-bar-bg"><div class="stat-bar-fill" style="width:${pct}%;background:${color}"></div></div></div>
       <div style="font-size:11px;color:var(--text-sub);width:32px;text-align:right">${pct}%</div>
     </div>`;
   }).join('');
 }
 
-/* ==========================================
-   設定
-   ========================================== */
+/* ── 設定 ── */
 function buildThemeGrid(){
   const grid=document.getElementById('theme-grid');
   if(!grid) return;
   grid.innerHTML=THEMES.map(t=>`
     <div class="theme-card ${appState.theme===t.id?'selected':''}" onclick="selectTheme('${t.id}')">
-      <div class="theme-preview" style="background:${t.color}"></div>
+      <div class="theme-preview" style="background:${t.grad}"></div>
       <div class="theme-name">${t.name}</div>
       <div class="theme-sub">${t.sub}</div>
     </div>`).join('');
 }
-
-function selectTheme(id){
-  applyTheme(id);saveLocal();buildThemeGrid();showToast('主題已切換 🎨');
-}
-
+function selectTheme(id){applyTheme(id);saveLocal();buildThemeGrid();showToast('主題已切換 🎨');}
 function renderSettings(){
   document.getElementById('currency-ntd-btn').classList.toggle('active',appState.currency==='NTD');
   document.getElementById('currency-jpy-btn').classList.toggle('active',appState.currency==='JPY');
@@ -1266,55 +1178,30 @@ function renderSettings(){
   if(syncEl) syncEl.textContent=appState.isOffline?'離線模式（資料存在本機）':'雲端同步中 ☁️';
   buildThemeGrid();renderCustomCats();
 }
-
-function setCurrency(cur){
-  appState.currency=cur;saveLocal();renderSettings();
-  showToast(`已切換為${cur==='NTD'?'台幣 NT$':'日幣 ¥'} 💱`);
-}
-
+function setCurrency(cur){appState.currency=cur;saveLocal();renderSettings();showToast(`已切換為${cur==='NTD'?'台幣 NT$':'日幣 ¥'} 💱`);}
 function toggleReminder(){
   if(!appState.reminderOn){
     if('Notification' in window){
       Notification.requestPermission().then(p=>{
-        if(p==='granted'){
-          appState.reminderOn=true;saveLocal();renderSettings();
-          scheduleReminder();showToast('提醒已開啟 🔔');
-        }else{showToast('請允許通知權限 🔔');}
+        if(p==='granted'){appState.reminderOn=true;saveLocal();renderSettings();scheduleReminder();showToast('提醒已開啟 🔔');}
+        else showToast('請允許通知權限 🔔');
       });
-    }else{showToast('您的瀏覽器不支援通知');}
-  }else{
-    appState.reminderOn=false;saveLocal();renderSettings();
-    if(reminderTimer) clearTimeout(reminderTimer);
-    showToast('提醒已關閉');
-  }
+    }else showToast('您的瀏覽器不支援通知');
+  }else{appState.reminderOn=false;saveLocal();renderSettings();if(reminderTimer) clearTimeout(reminderTimer);showToast('提醒已關閉');}
 }
-
-function saveReminderTime(){
-  appState.reminderTime=document.getElementById('reminder-time').value;
-  saveLocal();scheduleReminder();showToast('提醒時間已更新 ✓');
-}
-
+function saveReminderTime(){appState.reminderTime=document.getElementById('reminder-time').value;saveLocal();scheduleReminder();showToast('提醒時間已更新 ✓');}
 function scheduleReminder(){
   if(!appState.reminderOn) return;
   if(reminderTimer) clearTimeout(reminderTimer);
   const[h,m]=appState.reminderTime.split(':').map(Number);
-  const now=new Date();
-  const target=new Date();target.setHours(h,m,0,0);
+  const now=new Date();const target=new Date();target.setHours(h,m,0,0);
   if(target<=now) target.setDate(target.getDate()+1);
-  reminderTimer=setTimeout(()=>{
-    if(Notification.permission==='granted'){
-      new Notification('就是記帳 💰',{body:'記得今天的帳還沒記哦！',icon:'icon-192.png'});
-    }
-    scheduleReminder();
-  },target-now);
+  reminderTimer=setTimeout(()=>{if(Notification.permission==='granted') new Notification('就是記帳 💰',{body:'記得今天的帳還沒記哦！',icon:'icon-192.png'});scheduleReminder();},target-now);
 }
-
 function renderCustomCats(){
   const container=document.getElementById('custom-cats-list');
   const allCustoms=Object.entries(appState.customSubs);
-  if(allCustoms.length===0){
-    container.innerHTML='<div style="font-size:13px;color:var(--text-sub);text-align:center;padding:12px">還沒有自訂細項</div>';return;
-  }
+  if(allCustoms.length===0){container.innerHTML='<div style="font-size:13px;color:var(--text-sub);text-align:center;padding:12px">還沒有自訂細項</div>';return;}
   container.innerHTML=allCustoms.map(([catId,subs])=>{
     const allCats=[...CATEGORIES.expense,...CATEGORIES.income];
     const cat=allCats.find(c=>c.id===catId);
@@ -1326,18 +1213,8 @@ function renderCustomCats(){
       </div>`).join('');
   }).join('');
 }
-
-function deleteCustomSub(catId,subId){
-  if(!appState.customSubs[catId]) return;
-  appState.customSubs[catId]=appState.customSubs[catId].filter(s=>s.id!==subId);
-  saveLocal();renderSettings();showToast('已刪除 🗑️');
-}
-
-function openAddCatModal(){
-  document.getElementById('add-cat-modal').classList.add('show');
-  buildNewCatTabs('');buildEmojiPicker();
-}
-
+function deleteCustomSub(catId,subId){if(!appState.customSubs[catId]) return;appState.customSubs[catId]=appState.customSubs[catId].filter(s=>s.id!==subId);saveLocal();renderSettings();showToast('已刪除 🗑️');}
+function openAddCatModal(){document.getElementById('add-cat-modal').classList.add('show');buildNewCatTabs('');buildEmojiPicker();}
 function buildNewCatTabs(selectedId){
   const allCats=[...CATEGORIES.expense,...CATEGORIES.income];
   const tabs=document.getElementById('new-cat-tabs');
@@ -1347,23 +1224,19 @@ function buildNewCatTabs(selectedId){
       onclick="selectNewCatTab('${c.id}')">${c.icon} ${c.name}</div>`).join('');
   tabs.dataset.selected=selectedId;
 }
-
 function selectNewCatTab(catId){buildNewCatTabs(catId);}
-
 let selectedEmoji='🏷️';
 function buildEmojiPicker(){
   selectedEmoji='🏷️';
   document.getElementById('emoji-picker').innerHTML=EMOJI_OPTIONS.map(e=>`
     <div onclick="selectEmoji('${e}')" style="font-size:22px;text-align:center;padding:6px;border-radius:8px;cursor:pointer;border:2px solid transparent;transition:all 0.15s" id="emoji-${e.codePointAt(0)}">${e}</div>`).join('');
 }
-
 function selectEmoji(emoji){
   selectedEmoji=emoji;
   document.querySelectorAll('#emoji-picker div').forEach(d=>d.style.borderColor='transparent');
   const el=document.getElementById(`emoji-${emoji.codePointAt(0)}`);
   if(el) el.style.borderColor='var(--primary)';
 }
-
 function saveCustomSubcat(){
   const tabs=document.getElementById('new-cat-tabs');
   const catId=tabs.dataset.selected;
@@ -1379,34 +1252,30 @@ function saveCustomSubcat(){
   renderSettings();
   if(appState.addCategory===catId) buildSubcatGrid();
 }
-
 function exportData(){
   const blob=new Blob([JSON.stringify(appState.records,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url;a.download=`就是記帳_${getDateStr(new Date())}.json`;a.click();
+  const a=document.createElement('a');a.href=url;a.download=`就是記帳_${getDateStr(new Date())}.json`;a.click();
   URL.revokeObjectURL(url);showToast('匯出成功 📤');
 }
-
 function clearAllData(){
   if(!confirm('確定要清除所有資料嗎？此操作無法復原！')) return;
   appState.records=[];saveLocal();renderHome();showToast('已清除所有資料 🗑️');
 }
 
-/* ==========================================
-   初始化
-   ========================================== */
+/* ── 初始化 ── */
 async function init(){
   loadLocal();
   applyTheme(appState.theme);
   if(appState.token||appState.isOffline){
-    if(appState.token){
-      await loadCloudRecords();
-    }
+    if(appState.token) await loadCloudRecords();
     showApp();
   }
+  /* 初始化下滑關閉 */
+  initSwipeToClose('add-modal','add-modal-box');
+  initSwipeToClose('detail-modal','detail-modal-box');
+  initSwipeToClose('add-cat-modal','add-cat-modal-box');
 }
-
 document.addEventListener('DOMContentLoaded',()=>init());
 </script>
 </body>
