@@ -951,12 +951,34 @@ function numpadPress(key){
 }
 function buildCatTabs(){
   const cats=appState.addType==='expense'?CATEGORIES.expense:CATEGORIES.income;
-  document.getElementById('add-cat-tabs').innerHTML=cats.map(c=>`
-    <div class="cat-tab ${appState.addCategory===c.id?'active':''}"
-      style="${appState.addCategory===c.id?`background:${c.color}`:''}"
-      onclick="selectCat('${c.id}')">${c.icon} ${c.name}</div>`).join('');
-  if(appState.addCategory) buildSubcatGrid();
-  else document.getElementById('add-subcat-grid').innerHTML='';
+  if(appState.addCategory){
+    /* 覆蓋模式：只顯示子類別 + 返回按鈕 */
+    const cat=cats.find(c=>c.id===appState.addCategory);
+    const customs=appState.customSubs[appState.addCategory]||[];
+    const allSubs=cat?[...cat.subs,...customs]:[];
+    document.getElementById('add-cat-tabs').innerHTML=`
+      <div class="cat-tab" style="background:var(--border);color:var(--text-sub)"
+        onclick="backToCatSelect()">← 返回</div>
+      <div class="cat-tab active" style="background:${cat?.color||'var(--primary)'}">${cat?.icon} ${cat?.name}</div>`;
+    document.getElementById('add-subcat-grid').innerHTML=allSubs.map(s=>`
+      <div class="subcat-item ${appState.addSubcat===s.id?'selected':''}" onclick="selectSubcat('${s.id}')">
+        <div class="subcat-icon">${s.icon}</div><div class="subcat-name">${s.name}</div>
+      </div>`).join('')+`
+      <div class="subcat-item" style="border-style:dashed" onclick="openAddCatModal()">
+        <div class="subcat-icon">＋</div><div class="subcat-name">自訂</div>
+      </div>`;
+  }else{
+    /* 正常模式：顯示所有類別 */
+    document.getElementById('add-cat-tabs').innerHTML=cats.map(c=>`
+      <div class="cat-tab" style="" onclick="selectCat('${c.id}')">${c.icon} ${c.name}</div>`).join('');
+    document.getElementById('add-subcat-grid').innerHTML='';
+  }
+}
+
+function backToCatSelect(){
+  appState.addCategory='';
+  appState.addSubcat='';
+  buildCatTabs();
 }
 function selectCat(catId){appState.addCategory=catId;appState.addSubcat='';buildCatTabs();buildSubcatGrid();}
 function buildSubcatGrid(){
@@ -1006,43 +1028,43 @@ async function saveRecord(){
 
 /* ── 下滑關閉 Modal ── */
 function initSwipeToClose(overlayId,boxId){
+  const overlay=document.getElementById(overlayId);
   const box=document.getElementById(boxId);
-  if(!box) return;
-  let startY=0,currentY=0,isDragging=false;
+  if(!box||!overlay) return;
   const handle=box.querySelector('.modal-handle');
-  const startDrag=e=>{
-    const touch=e.touches?e.touches[0]:e;
-    startY=touch.clientY;isDragging=true;currentY=0;
+  if(!handle) return;
+
+  let startY=0,currentY=0,isDragging=false;
+
+  handle.addEventListener('touchstart',e=>{
+    startY=e.touches[0].clientY;
+    isDragging=true;
+    currentY=0;
     box.style.transition='none';
-  };
-  const moveDrag=e=>{
+  },{passive:true});
+
+  handle.addEventListener('touchmove',e=>{
     if(!isDragging) return;
-    const touch=e.touches?e.touches[0]:e;
-    currentY=Math.max(0,touch.clientY-startY);
+    currentY=Math.max(0,e.touches[0].clientY-startY);
     box.style.transform=`translateY(${currentY}px)`;
-    if(e.cancelable) e.preventDefault();
-  };
-  const endDrag=()=>{
+  },{passive:true});
+
+  handle.addEventListener('touchend',()=>{
     if(!isDragging) return;
     isDragging=false;
     box.style.transition='transform 0.3s ease';
-    if(currentY>120){
+    if(currentY>100){
       box.style.transform='translateY(100%)';
       setTimeout(()=>{
-        document.getElementById(overlayId).classList.remove('show');
-        box.style.transform='';box.style.transition='';
+        overlay.classList.remove('show');
+        box.style.transform='';
+        box.style.transition='';
       },300);
     }else{
       box.style.transform='';
       setTimeout(()=>{box.style.transition='';},300);
     }
-  };
-  if(handle){
-    handle.addEventListener('touchstart',startDrag,{passive:true});
-    handle.addEventListener('touchmove',moveDrag,{passive:false});
-    handle.addEventListener('touchend',endDrag);
-  }
-  box.addEventListener('touchstart',e=>{if(e.target===handle||handle?.contains(e.target)) startDrag(e);},{passive:true});
+  });
 }
 
 /* ── 統計 ── */
